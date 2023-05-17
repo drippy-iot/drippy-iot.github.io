@@ -1,0 +1,17 @@
+{
+    "compilerOptions": {
+        "noUncheckedIndexedAccess": true,
+        "allowImportingTsExtensions": true,
+        "noEmit": true,
+        "target": "ES2022",
+        "lib": [ "DOM", "ES2022" ],
+        "module": "ES2020",
+        "isolatedModules": true,
+        "moduleResolution": "bundler",
+        "strict": true,
+        "paths": { "~model/*": [ "../model/src/*" ] },
+        "types": [ "serviceworker" ],
+        "plugins": [ { "name": "typescript-svelte-plugin" } ]
+    },
+    "references": [ { "path": "../model" } ]
+}

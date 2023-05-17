@@ -1,0 +1,5 @@
+{
+    "preset": "max",
+    "minifyCss": false,
+    "minifyJs": false
+}
