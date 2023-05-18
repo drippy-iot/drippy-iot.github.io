@@ -9,8 +9,8 @@
         "watch": "parcel watch --no-hmr",
         "lint": "eslint src",
         "lint:fix": "eslint --fix src",
-        "fmt": "prettier --write src",
-        "fmt:check": "prettier --check src"
+        "fmt": "prettier --check src",
+        "fmt:fix": "prettier --write src"
     },
     "devDependencies": {
         "@parcel/bundler-default": "^2.8.3",
