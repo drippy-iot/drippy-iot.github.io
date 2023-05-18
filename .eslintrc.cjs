@@ -11,16 +11,19 @@ module.exports = {
         'plugin:svelte/prettier',
         'prettier',
     ],
+    'parser': '@typescript-eslint/parser',
+    'parserOptions': {
+        'ecmaVersion': 'latest',
+        'project': "./tsconfig.json",
+        'extraFileExtensions': [".svelte"]
+    },
     'overrides': [
         {
             "files": ["*.svelte"],
-            "parser": "svelte-eslint-parser"
+            "parser": "svelte-eslint-parser",
+            "parserOptions": { 'parser': "@typescript-eslint/parser" }
         }
     ],
-    'parser': '@typescript-eslint/parser',
-    'parserOptions': {
-        'ecmaVersion': 'latest'
-    },
     'plugins': [
         '@typescript-eslint'
     ],
