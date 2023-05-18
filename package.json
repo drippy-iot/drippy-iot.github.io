@@ -2,6 +2,7 @@
     "name": "dashboard",
     "version": "0.1.0",
     "type": "module",
+    "packageManager": "pnpm@8",
     "source": "src/index.html",
     "scripts": {
         "build": "parcel build",
