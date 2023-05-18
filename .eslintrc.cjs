@@ -7,9 +7,15 @@ module.exports = {
     'extends': [
         'eslint:recommended',
         'plugin:@typescript-eslint/recommended',
+        'plugin:svelte/recommended',
+        'plugin:svelte/prettier',
         'prettier',
     ],
     'overrides': [
+        {
+            "files": ["*.svelte"],
+            "parser": "svelte-eslint-parser"
+        }
     ],
     'parser': '@typescript-eslint/parser',
     'parserOptions': {
