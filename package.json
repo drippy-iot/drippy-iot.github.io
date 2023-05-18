@@ -6,7 +6,10 @@
     "scripts": {
         "build": "parcel build",
         "dev": "parcel --no-hmr",
-        "watch": "parcel watch --no-hmr"
+        "watch": "parcel watch --no-hmr",
+        "lint": "eslint --debug src",
+        "format-check": "prettier --check src",
+        "format": "prettier --write src"
     },
     "devDependencies": {
         "@parcel/bundler-default": "^2.8.3",
