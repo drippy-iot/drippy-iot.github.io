@@ -37,13 +37,12 @@
     .blob {
         @apply text-blue-300;
         @apply fixed z-[-999];
-        @apply w-[150%];
+        @apply w-[720px];
     }
     .top {
-        @apply left-[-60%] top-[-34%];
+        @apply left-[-420px] top-[-245px];
     }
     .bot {
-        @apply visible;
-        @apply bottom-[-20%] right-[-60%];
+        @apply bottom-[-144px] right-[-420px];
     }
 </style>
