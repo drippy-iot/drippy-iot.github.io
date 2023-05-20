@@ -18,7 +18,7 @@
 
 <style>
     button {
-        @apply h-16 flex-1;
+        @apply h-12 flex-1;
         @apply bg-slate-900;
         @apply flex items-center justify-center;
     }
@@ -26,7 +26,7 @@
         @apply bg-slate-700;
     }
     div {
-        @apply h-10 w-10;
+        @apply h-6 w-6;
         @apply text-white;
     }
 </style>
