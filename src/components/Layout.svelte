@@ -1,4 +1,4 @@
-<script lang="ts">
+<script>
     import MobileWrapper from './MobileWrapper.svelte';
 </script>
 
