@@ -1,5 +1,13 @@
 <script>
-    import Layout from './components/Layout.svelte';
+    import Router from 'svelte-spa-router';
+
+    import Dashboard from './routes/Dashboard/Page.svelte';
+    import Login from './routes/Login/Page.svelte';
+
+    const routes = {
+        '/': Login,
+        '/dash': Dashboard,
+    };
 </script>
 
-<Layout><h1 class="text-3xl font-bold underline">Hello world!</h1></Layout>
+<Router {routes} />
