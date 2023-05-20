@@ -41,16 +41,16 @@
         "@types/serviceworker": "^0.0.67",
         "@typescript-eslint/eslint-plugin": "^5.59.6",
         "@typescript-eslint/parser": "^5.59.6",
-        "eslint": "^8.40.0",
+        "eslint": "^8.41.0",
         "eslint-config-prettier": "^8.8.0",
         "eslint-plugin-svelte": "^2.28.0",
         "parcel": "^2.8.3",
         "prettier": "^2.8.8",
-        "svelte": "^3.58.0",
-        "svelte-eslint-parser": "^0.28.0",
+        "svelte": "^3.59.1",
+        "svelte-eslint-parser": "^0.29.0",
         "svelte-preprocess": "^5.0.3",
         "typescript": "^5.0.4",
-        "typescript-svelte-plugin": "^0.3.22"
+        "typescript-svelte-plugin": "^0.3.25"
     },
     "dependencies": {
         "@parcel/service-worker": "^2.8.3",
