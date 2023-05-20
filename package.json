@@ -10,8 +10,9 @@
         "watch": "parcel watch --no-hmr",
         "lint": "eslint src",
         "lint:fix": "eslint --fix src",
-        "fmt": "prettier --check src",
-        "fmt:fix": "prettier --write src"
+        "fmt:base": "prettier \"src/**/*.{html,svelte,ts,js,css}\"",
+        "fmt": "pnpm fmt:base --check",
+        "fmt:fix": "pnpm fmt:base --write"
     },
     "devDependencies": {
         "@parcel/bundler-default": "^2.8.3",
@@ -48,6 +49,8 @@
         "parcel": "^2.8.3",
         "postcss": "^8.4.23",
         "prettier": "^2.8.8",
+        "prettier-plugin-svelte": "^2.10.0",
+        "prettier-plugin-tailwindcss": "^0.3.0",
         "svelte": "^3.59.1",
         "svelte-eslint-parser": "^0.29.0",
         "svelte-preprocess": "^5.0.3",
