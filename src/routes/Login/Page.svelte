@@ -14,10 +14,10 @@
 <Layout>
     <h1>Login Page: {isUser}</h1>
     <div class="blob top">
-        <AnimatedBlob ds={TOP_BLOB} duration="5s" />
+        <AnimatedBlob ds={TOP_BLOB} duration="20s" />
     </div>
     <div class="blob bot">
-        <AnimatedBlob ds={BOT_BLOB} duration="7s" />
+        <AnimatedBlob ds={BOT_BLOB} duration="28s" />
     </div>
     <TabGroup>
         <TabItem on:click={() => (isUser = true)} active={isUser}>
