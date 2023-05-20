@@ -5,5 +5,5 @@
 
 <Layout>
     <h1>Login Page</h1>
-    <a use:link={'/dash'}>Dashboard</a>
+    <a href="/dash" use:link>Dashboard</a>
 </Layout>
