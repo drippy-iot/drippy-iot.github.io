@@ -19,6 +19,8 @@
 
         border: var(--border-size) solid gray;
         border-radius: var(--border-radius);
+
+        box-sizing: content-box;
     }
     main {
         position: relative;
@@ -31,5 +33,7 @@
         border-radius: var(--border-radius);
 
         overflow: auto;
+
+        box-sizing: content-box;
     }
 </style>
