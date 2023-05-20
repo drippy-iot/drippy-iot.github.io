@@ -75,6 +75,9 @@ devDependencies:
   '@parcel/transformer-js':
     specifier: ^2.8.3
     version: 2.8.3(@parcel/core@2.8.3)
+  '@parcel/transformer-postcss':
+    specifier: ^2.8.3
+    version: 2.8.3(@parcel/core@2.8.3)
   '@parcel/transformer-typescript-types':
     specifier: ^2.8.3
     version: 2.8.3(@parcel/core@2.8.3)(typescript@5.0.4)
