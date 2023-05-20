@@ -7,12 +7,16 @@
     import TabGroup from '../../components/Tab/TabGroup.svelte';
     import { TOP_BLOB, BOT_BLOB } from './blobPaths';
     import AnimatedBlob from '../../components/AnimatedBlob.svelte';
-
+    import Drippy from '../../assets/drippy-animated.svelte';
     let isUser = true;
 </script>
 
 <Layout>
     <h1>Login Page: {isUser}</h1>
+    <div class="logo">
+        <Drippy />
+    </div>
+
     <div class="blob top">
         <AnimatedBlob ds={TOP_BLOB} duration="20s" />
     </div>
