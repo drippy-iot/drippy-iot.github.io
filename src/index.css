@@ -1,2 +1,18 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
 @tailwind base;
 @tailwind utilities;
+
+@layer base {
+    body {
+        font-family: Poppins, Arial, sans-serif;
+        letter-spacing: 0.05rem;
+        font-style: normal;
+        font-weight: 400;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+        font-smooth: never;
+
+        @apply text-slate-900;
+    }
+}
