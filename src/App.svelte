@@ -3,6 +3,7 @@
 
     import Dashboard from './routes/Dashboard/Page.svelte';
     import Login from './routes/Login/Page.svelte';
+
     import { register } from './register.ts';
 
     const routes = {
@@ -14,7 +15,7 @@
 <main>
     {#await register()}
         Loading service worker.
-    {:then} 
+    {:then}
         Loaded.
         <Router {routes} />
     {/await}
