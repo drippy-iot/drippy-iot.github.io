@@ -16,7 +16,6 @@
     {#await register()}
         Loading service worker.
     {:then}
-        Loaded.
         <Router {routes} />
     {/await}
 </main>

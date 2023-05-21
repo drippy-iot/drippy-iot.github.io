@@ -26,6 +26,10 @@
     "compressors": {
         "*": ["@parcel/compressor-raw"]
     },
+    "runtimes": [
+        "@parcel/runtime-js",
+        "@parcel/runtime-service-worker"
+    ],
     "resolvers": ["@parcel/resolver-default"],
     "reporters": ["@parcel/reporter-dev-server"]
 }
