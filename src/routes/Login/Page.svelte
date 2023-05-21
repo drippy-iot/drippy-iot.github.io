@@ -17,6 +17,10 @@
             <Drippy />
             <h1>Drippy</h1>
         </div>
+        <form on:submit|preventDefault>
+            <input type="text" />
+            <button>Login</button>
+        </form>
     </main>
 
     <div class="blob top">
@@ -53,5 +57,23 @@
     }
     .logo h1 {
         @apply text-center text-3xl leading-loose;
+    }
+
+    button {
+        @apply w-full p-4;
+        @apply bg-blue-500;
+        @apply text-center text-white;
+    }
+    input {
+        @apply w-full p-4;
+        @apply border border-slate-400;
+    }
+
+    form {
+        @apply w-1/2;
+    }
+
+    form input {
+        @apply mb-16;
     }
 </style>
