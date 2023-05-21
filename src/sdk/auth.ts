@@ -1,5 +1,6 @@
 import { StatusCodes } from 'http-status-codes';
 
+import { assert } from '../assert.ts';
 import { BadInput, UnexpectedStatusCode } from './error.ts';
 
 export interface Session {
@@ -15,6 +16,7 @@ export interface Session {
 export async function getSession(): Promise<Session | null> {
     const res = await fetch('/auth/session', { credentials: 'include' });
     const mac = await res.arrayBuffer();
+    assert(mac.byteLength === 6);
     switch (res.status) {
         case StatusCodes.OK:
             return { mac, shutdown: false };
