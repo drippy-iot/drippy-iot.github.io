@@ -12,10 +12,12 @@
 </script>
 
 <Layout>
-    <h1>Login Page: {isUser}</h1>
-    <div class="logo">
-        <Drippy />
-    </div>
+    <main>
+        <h1>Login Page: {isUser}</h1>
+        <div class="logo">
+            <Drippy />
+        </div>
+    </main>
 
     <div class="blob top">
         <AnimatedBlob ds={TOP_BLOB} duration="20s" />
@@ -44,5 +46,9 @@
     }
     .bot {
         @apply bottom-[-144px] right-[-420px];
+    }
+    main {
+        @apply wrapper pb-12;
+        @apply flex flex-col items-center justify-evenly;
     }
 </style>
