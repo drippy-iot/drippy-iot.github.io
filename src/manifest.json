@@ -1,0 +1,8 @@
+{
+    "name": "Drippy",
+    "short_name": "Drippy",
+    "description": " An Enterprise Solution for Leak Monitoring and Detection via Web Interfaces in the Cloud.",
+    "display": "standalone",
+    "background_color": "#fff",
+    "start_url": "."
+}

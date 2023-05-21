@@ -63,6 +63,12 @@ devDependencies:
   '@parcel/resolver-default':
     specifier: ^2.8.3
     version: 2.8.3(@parcel/core@2.8.3)
+  '@parcel/runtime-js':
+    specifier: ^2.8.3
+    version: 2.8.3(@parcel/core@2.8.3)
+  '@parcel/runtime-service-worker':
+    specifier: ^2.8.3
+    version: 2.8.3(@parcel/core@2.8.3)
   '@parcel/transformer-css':
     specifier: ^2.8.3
     version: 2.8.3(@parcel/core@2.8.3)
