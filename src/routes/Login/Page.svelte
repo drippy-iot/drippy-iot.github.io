@@ -13,9 +13,9 @@
 
 <Layout>
     <main>
-        <h1>Login Page: {isUser}</h1>
         <div class="logo">
             <Drippy />
+            <h1>Drippy</h1>
         </div>
     </main>
 
@@ -50,5 +50,8 @@
     main {
         @apply wrapper pb-12;
         @apply flex flex-col items-center justify-evenly;
+    }
+    .logo h1 {
+        @apply text-center text-3xl leading-loose;
     }
 </style>
