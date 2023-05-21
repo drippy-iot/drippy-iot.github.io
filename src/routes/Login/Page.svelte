@@ -8,7 +8,7 @@
     import { TOP_BLOB, BOT_BLOB } from './blobPaths';
     import AnimatedBlob from '../../components/AnimatedBlob.svelte';
     import Drippy from '../../assets/drippy-animated.svelte';
-    let isUser = true;
+    let user = true;
 </script>
 
 <Layout>
@@ -19,7 +19,7 @@
         </div>
         <form on:submit|preventDefault>
             <input type="text" />
-            <button>Login</button>
+            <button class:user>Login</button>
         </form>
     </main>
 
@@ -30,10 +30,10 @@
         <AnimatedBlob ds={BOT_BLOB} duration="28s" />
     </div>
     <TabGroup>
-        <TabItem on:click={() => (isUser = true)} active={isUser}>
+        <TabItem on:click={() => (user = true)} active={user}>
             <FaUser />
         </TabItem>
-        <TabItem on:click={() => (isUser = false)} active={!isUser}>
+        <TabItem on:click={() => (user = false)} active={!user}>
             <FaShieldAlt />
         </TabItem>
     </TabGroup>
@@ -61,8 +61,11 @@
 
     button {
         @apply w-full p-4;
-        @apply bg-blue-500;
+        @apply bg-yellow-500;
         @apply text-center text-white;
+    }
+    button.user {
+        @apply bg-blue-500;
     }
     input {
         @apply w-full p-4;
