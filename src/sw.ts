@@ -10,23 +10,23 @@ async function installWorker() {
 
 async function activateWorker() {
     const keys = await caches.keys();
-    const deletePromises = keys.map((key) =>
+    const deletePromises = keys.map(key =>
         key === version ? Promise.resolve(true) : caches.delete(key)
     );
     const results = await Promise.all(deletePromises);
-    assert(results.every((x) => x));
+    assert(results.every(x => x));
 }
 
 self.addEventListener(
     'install',
-    (evt) => {
+    evt => {
         assert(evt instanceof ExtendableEvent);
         evt.waitUntil(installWorker());
     },
     { once: true, passive: true }
 );
 
-self.addEventListener('activate', (evt) => {
+self.addEventListener('activate', evt => {
     assert(evt instanceof ExtendableEvent);
     evt.waitUntil(activateWorker());
 });
