@@ -7,7 +7,6 @@
     const dispatch = createEventDispatcher();
 
     function onClick(e: MouseEvent) {
-        active = !active;
         dispatch('click', e);
     }
 </script>
