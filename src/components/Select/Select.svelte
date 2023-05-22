@@ -6,7 +6,13 @@
 <button>
     <label for={name}> Device Mac:</label>
 
-    <input type="text" {name} bind:value />
+    <input
+        type="text"
+        {name}
+        size={value.toString().length}
+        readonly
+        bind:value
+    />
 </button>
 
 <style>
