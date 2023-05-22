@@ -1,5 +1,4 @@
 <script lang="ts">
-    import { createEventDispatcher } from 'svelte';
     import Drippy from '../assets/drippy.svelte';
 
     export let active: boolean;
