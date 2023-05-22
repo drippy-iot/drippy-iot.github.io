@@ -45,16 +45,20 @@
         @apply fixed z-[-999];
         @apply w-[720px];
     }
+
     .top {
         @apply left-[-420px] top-[-245px];
     }
+
     .bot {
         @apply bottom-[-144px] right-[-420px];
     }
+
     main {
         @apply wrapper pb-12;
         @apply flex flex-col items-center justify-evenly;
     }
+
     .logo h1 {
         @apply text-center text-3xl leading-loose;
     }
@@ -64,9 +68,11 @@
         @apply bg-yellow-500;
         @apply text-center text-white;
     }
+
     button.user {
         @apply bg-blue-500;
     }
+
     input {
         @apply w-full p-4;
         @apply border border-slate-400;

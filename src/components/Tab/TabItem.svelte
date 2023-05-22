@@ -22,9 +22,11 @@
         @apply bg-slate-900;
         @apply flex items-center justify-center;
     }
+
     button.active {
         @apply bg-slate-700;
     }
+
     div {
         @apply h-6 w-6;
         @apply text-white;
