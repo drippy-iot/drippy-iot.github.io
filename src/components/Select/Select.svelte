@@ -1,19 +1,26 @@
 <script>
+    import Options from './Options.svelte';
+
     export let name;
     export let value;
+
+    let open = true;
 </script>
 
-<button>
-    <label for={name}> Device Mac:</label>
+<div>
+    <button on:click={() => (open = !open)}>
+        <label for={name}> Device Mac:</label>
 
-    <input
-        type="text"
-        {name}
-        size={value.toString().length}
-        readonly
-        bind:value
-    />
-</button>
+        <input
+            type="text"
+            {name}
+            size={value.toString().length}
+            readonly
+            bind:value
+        />
+    </button>
+    <Options bind:open />
+</div>
 
 <style>
     button {
@@ -26,5 +33,9 @@
     input {
         @apply bg-transparent;
         @apply text-center font-thin;
+    }
+
+    div {
+        @apply wrapper;
     }
 </style>
