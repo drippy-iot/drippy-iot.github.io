@@ -32,7 +32,9 @@
         border: calc(var(--border-size) / 2) solid black;
         border-radius: var(--border-radius);
 
-        overflow: auto;
+        transform: rotate(0deg);
+
+        overflow: hidden;
 
         box-sizing: content-box;
     }
