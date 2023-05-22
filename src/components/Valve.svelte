@@ -1,0 +1,42 @@
+<script>
+    import Drippy from '../assets/drippy.svelte';
+
+    let active = true;
+</script>
+
+<button class:active on:click={() => (active = !active)}>
+    <Drippy />
+</button>
+
+<style>
+    button {
+        --transition-duration: 0.5s;
+
+        @apply block h-5 w-5;
+    }
+
+    :global(button.active #Gear) {
+        transform: rotate(0deg);
+        transition: transform var(--transition-duration) ease-in;
+    }
+
+    :global(button.active #Droplet) {
+        opacity: 1;
+        transform: translateY(0);
+        transition: transform var(--transition-duration) ease-in,
+            opacity var(--transition-duration) ease-in;
+    }
+
+    :global(button #Droplet) {
+        opacity: 0;
+        transform: translateY(-15%);
+        transition: transform var(--transition-duration) ease-in,
+            opacity var(--transition-duration) ease-out;
+    }
+
+    :global(button #Gear) {
+        transform: rotate(90deg);
+        transform-origin: center;
+        transition: transform var(--transition-duration) ease-out;
+    }
+</style>
