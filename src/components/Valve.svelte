@@ -1,10 +1,18 @@
-<script>
+<script lang="ts">
+    import { createEventDispatcher } from 'svelte';
     import Drippy from '../assets/drippy.svelte';
 
-    let active = true;
+    export let active: boolean;
+
+    const dispatch = createEventDispatcher();
+
+    function onClick(e: MouseEvent) {
+        active = !active;
+        dispatch('click', { event: e });
+    }
 </script>
 
-<button class:active on:click={() => (active = !active)}>
+<button class:active on:click={onClick}>
     <Drippy />
 </button>
 
