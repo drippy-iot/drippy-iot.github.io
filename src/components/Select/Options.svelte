@@ -5,6 +5,7 @@
     $: if (dialog && open) dialog.showModal();
 </script>
 
+<!-- svelte-ignore a11y-click-events-have-key-events -->
 <dialog
     bind:this={dialog}
     on:click|self={() => dialog.close()}
