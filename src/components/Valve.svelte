@@ -8,7 +8,7 @@
 
     function onClick(e: MouseEvent) {
         active = !active;
-        dispatch('click', { event: e });
+        dispatch('click', e);
     }
 </script>
 
