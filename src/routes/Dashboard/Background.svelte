@@ -26,17 +26,21 @@
         @apply wrapper flex flex-col;
         @apply absolute top-0;
     }
+
     .wave:after {
         content: ' ';
         @apply flex-1;
         @apply bg-blue-500;
     }
+
     .wave.one {
         @apply top-[30cqh];
     }
+
     .wave.two {
         @apply top-[40cqh];
     }
+
     .wave.three {
         @apply top-[50cqh];
     }
