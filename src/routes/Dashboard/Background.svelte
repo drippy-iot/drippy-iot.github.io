@@ -10,17 +10,15 @@
     ];
 </script>
 
-<span>
-    <div class="wave one">
-        <Waves ds={PATHS} duration="7s" />
-    </div>
-    <div class="wave two">
-        <Waves ds={[...PATHS.slice(1), PATHS[0]]} duration="10s" />
-    </div>
-    <div class="wave three">
-        <Waves ds={[...PATHS.slice(2), ...PATHS.slice(0, 3)]} duration="9s" />
-    </div>
-</span>
+<div class="wave one">
+    <Waves ds={PATHS} duration="7s" />
+</div>
+<div class="wave two">
+    <Waves ds={[...PATHS.slice(1), PATHS[0]]} duration="10s" />
+</div>
+<div class="wave three">
+    <Waves ds={[...PATHS.slice(2), ...PATHS.slice(0, 3)]} duration="9s" />
+</div>
 
 <style>
     .wave {
