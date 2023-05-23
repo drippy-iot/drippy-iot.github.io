@@ -36,6 +36,8 @@
 
         overflow: hidden;
 
+        container-type: size;
+
         box-sizing: content-box;
     }
 </style>
