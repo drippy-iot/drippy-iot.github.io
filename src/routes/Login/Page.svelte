@@ -6,7 +6,7 @@
     import TabItem from '../../components/Tab/TabItem.svelte';
     import TabGroup from '../../components/Tab/TabGroup.svelte';
     import { TOP_BLOB, BOT_BLOB } from './blobPaths';
-    import AnimatedBlob from '../../components/AnimatedBlob.svelte';
+    import Blob from '../../components/Blob.svelte';
     import Drippy from '../../assets/drippy-animated.svelte';
     let user = true;
 </script>
@@ -24,10 +24,10 @@
     </main>
 
     <div class="blob top">
-        <AnimatedBlob ds={TOP_BLOB} duration="20s" />
+        <Blob ds={TOP_BLOB} duration="20s" />
     </div>
     <div class="blob bot">
-        <AnimatedBlob ds={BOT_BLOB} duration="28s" />
+        <Blob ds={BOT_BLOB} duration="28s" />
     </div>
     <TabGroup>
         <TabItem on:click={() => (user = true)} active={user}>
