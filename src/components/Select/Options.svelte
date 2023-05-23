@@ -11,9 +11,11 @@
     function select(option: Option) {
         value = option;
     }
+
     function close() {
         open = false;
     }
+
     function outsideClick() {
         dialog.close();
     }

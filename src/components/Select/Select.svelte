@@ -16,7 +16,6 @@
 <span>
     <button on:click={toggle}>
         <label for={name}> Device Mac:</label>
-
         <input
             type="text"
             {name}
