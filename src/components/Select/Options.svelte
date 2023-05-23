@@ -1,12 +1,12 @@
 <script lang="ts">
+    import type { Option } from './types.ts';
+
     export let open: boolean;
-    export let options: any;
-    export let value: any;
+    export let options: Option[];
+    export let value: Option;
     let dialog: HTMLDialogElement;
 
     $: if (dialog && open) dialog.showModal();
-
-    $: console.log(value);
 </script>
 
 <!-- svelte-ignore a11y-click-events-have-key-events -->

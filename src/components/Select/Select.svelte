@@ -1,11 +1,12 @@
-<script>
+<script lang="ts">
     import Options from './Options.svelte';
+    import type { Option } from './types.ts';
 
-    export let name;
-    export let value;
-    export let options;
+    export let name: HTMLInputElement['name'];
+    export let value: Option;
+    export let options: Option[];
 
-    let open = true;
+    let open = false;
 </script>
 
 <div>
