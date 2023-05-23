@@ -1,9 +1,12 @@
 <script lang="ts">
     export let open: boolean;
     export let options: any;
+    export let value: any;
     let dialog: HTMLDialogElement;
 
     $: if (dialog && open) dialog.showModal();
+
+    $: console.log(value);
 </script>
 
 <!-- svelte-ignore a11y-click-events-have-key-events -->
@@ -14,7 +17,12 @@
 >
     <ul on:click|stopPropagation>
         {#each options as option}
-            <li class:selected={true}>{option}</li>
+            <li
+                class:selected={value === option}
+                on:click={() => (value = option)}
+            >
+                {option}
+            </li>
         {/each}
     </ul>
 </dialog>

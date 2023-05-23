@@ -20,7 +20,7 @@
             bind:value
         />
     </button>
-    <Options bind:open {options} />
+    <Options bind:open bind:value {options} />
 </div>
 
 <style>
