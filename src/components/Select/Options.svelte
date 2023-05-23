@@ -37,16 +37,20 @@
     ul {
         @apply wrapper bg-white;
     }
+
     dialog {
         @apply w-[80%];
     }
+
     dialog::backdrop {
         @apply bg-black opacity-30;
     }
+
     li {
         @apply p-4;
         @apply flex items-center justify-between;
     }
+
     li:after {
         content: ' ';
         @apply block h-3 w-3 rounded-full;
