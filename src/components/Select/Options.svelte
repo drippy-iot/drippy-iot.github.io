@@ -1,5 +1,6 @@
 <script lang="ts">
     export let open: boolean;
+    export let options: any;
     let dialog: HTMLDialogElement;
 
     $: if (dialog && open) dialog.showModal();
@@ -12,11 +13,9 @@
     on:close={() => (open = false)}
 >
     <ul on:click|stopPropagation>
-        <li class="selected">Option 1</li>
-        <li>Option 2</li>
-        <li>Option 3</li>
-        <li>Option 4</li>
-        <li>Option 5</li>
+        {#each options as option}
+            <li class:selected={true}>{option}</li>
+        {/each}
     </ul>
 </dialog>
 

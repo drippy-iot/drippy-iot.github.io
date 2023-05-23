@@ -3,6 +3,7 @@
 
     export let name;
     export let value;
+    export let options;
 
     let open = true;
 </script>
@@ -19,7 +20,7 @@
             bind:value
         />
     </button>
-    <Options bind:open />
+    <Options bind:open {options} />
 </div>
 
 <style>
