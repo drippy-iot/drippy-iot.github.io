@@ -25,14 +25,14 @@
     .blob {
         @apply text-blue-300;
         @apply fixed z-[-999];
-        @apply w-[720px];
+        @apply w-[100cqh];
     }
 
     .top {
-        @apply left-[-420px] top-[-245px];
+        @apply left-[-60cqh] top-[-30cqh];
     }
 
     .bot {
-        @apply bottom-[-144px] right-[-420px];
+        @apply bottom-[-30cqh] right-[-60cqh];
     }
 </style>
