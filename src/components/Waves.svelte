@@ -1,6 +1,10 @@
 <script lang="ts">
     export let ds: string[];
     export let duration: string;
+
+    $: [first, ..._] = ds;
+    $: points = typeof first === 'undefined' ? ds : [...ds, first];
+    $: values = points.join(';');
 </script>
 
 <svg
@@ -13,7 +17,7 @@
             attributeName="d"
             dur={duration}
             repeatCount="indefinite"
-            values={[...ds, ds[0]].join(';')}
+            {values}
         />
     </path>
 </svg>
