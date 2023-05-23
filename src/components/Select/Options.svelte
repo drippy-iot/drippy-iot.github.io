@@ -22,7 +22,7 @@
 <!-- svelte-ignore a11y-click-events-have-key-events -->
 <dialog bind:this={dialog} on:click|self={outsideClick} on:close={close}>
     <ul on:click|stopPropagation>
-        {#each options as option}
+        {#each options as option (option)}
             <li
                 class:selected={value === option}
                 on:click={() => select(option)}

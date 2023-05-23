@@ -13,7 +13,7 @@
     }
 </script>
 
-<div>
+<span>
     <button on:click={toggle}>
         <label for={name}> Device Mac:</label>
 
@@ -26,7 +26,7 @@
         />
     </button>
     <Options bind:open bind:value {options} />
-</div>
+</span>
 
 <style>
     button {
@@ -39,9 +39,5 @@
     input {
         @apply bg-transparent;
         @apply text-center font-thin;
-    }
-
-    div {
-        @apply wrapper;
     }
 </style>
