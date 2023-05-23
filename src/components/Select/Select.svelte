@@ -7,10 +7,14 @@
     export let options: Option[];
 
     let open = false;
+
+    function toggle() {
+        open = !open;
+    }
 </script>
 
 <div>
-    <button on:click={() => (open = !open)}>
+    <button on:click={toggle}>
         <label for={name}> Device Mac:</label>
 
         <input

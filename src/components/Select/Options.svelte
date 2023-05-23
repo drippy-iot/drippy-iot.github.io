@@ -7,19 +7,25 @@
     let dialog: HTMLDialogElement;
 
     $: if (dialog && open) dialog.showModal();
+
+    function select(option: Option) {
+        value = option;
+    }
+    function close() {
+        open = false;
+    }
+    function outsideClick() {
+        dialog.close();
+    }
 </script>
 
 <!-- svelte-ignore a11y-click-events-have-key-events -->
-<dialog
-    bind:this={dialog}
-    on:click|self={() => dialog.close()}
-    on:close={() => (open = false)}
->
+<dialog bind:this={dialog} on:click|self={outsideClick} on:close={close}>
     <ul on:click|stopPropagation>
         {#each options as option}
             <li
                 class:selected={value === option}
-                on:click={() => (value = option)}
+                on:click={() => select(option)}
             >
                 {option}
             </li>
