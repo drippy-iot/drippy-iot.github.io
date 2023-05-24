@@ -13,7 +13,7 @@
         <h1>Dashboard Page</h1>
 
         <span class="select-row">
-            <Select {options} bind:value disabled={true}>Device Mac:</Select>
+            <Select {options} bind:value disabled>Device Mac:</Select>
             <Text>Connected</Text>
         </span>
         <Background />

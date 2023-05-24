@@ -5,7 +5,7 @@
     export let name: HTMLInputElement['name'];
     export let value: Option;
     export let options: Option[];
-    export let disabled: boolean | undefined;
+    export let disabled = false;
 
     let open = false;
 
