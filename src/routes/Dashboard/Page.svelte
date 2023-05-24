@@ -13,7 +13,7 @@
 </script>
 
 <Layout>
-    <div class="wrapper flex flex-col items-center p-4 text-sm">
+    <div class="wrapper flex flex-col items-center p-4 text-xs">
         <span class="w-full">
             <h2>Welcome</h2>
             <h1>Some-Dood</h1>

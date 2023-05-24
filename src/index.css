@@ -4,6 +4,9 @@
 @tailwind utilities;
 
 @layer base {
+    :root {
+        font-size: clamp(16px, 2.5vw, 24px);
+    }
     body {
         font-family: Poppins, Arial, sans-serif;
         letter-spacing: 0.05rem;
@@ -23,5 +26,7 @@
     }
     p {
         @apply text-sm;
+    }
+    :root {
     }
 }
