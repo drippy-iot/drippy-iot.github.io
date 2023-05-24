@@ -12,8 +12,9 @@
     import Text from '../../components/Text.svelte';
     import Background from './Background.svelte';
     import Valve from '../../components/Valve.svelte';
+    import type { Option } from '../../components/Select/types.ts';
 
-    const options = ['ad:ad:ad:ad', '00:00:00:00', 'co:de:ba:be'];
+    const options: Option[] = ['ad:ad:ad:ad', '00:00:00:00', 'co:de:ba:be'];
     let value = options[0];
     enum LogType {
         AUTO_CLOSE,
