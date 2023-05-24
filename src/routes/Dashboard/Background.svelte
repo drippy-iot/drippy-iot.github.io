@@ -32,6 +32,7 @@
         content: ' ';
         @apply flex-1;
         @apply bg-blue-500;
+        margin-top: -1px;
     }
 
     .wave.one {
