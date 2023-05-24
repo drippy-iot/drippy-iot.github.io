@@ -11,12 +11,15 @@
 
 <Layout>
     <div class="wrapper flex flex-col items-center p-4 text-sm">
-        <h1>Dashboard Page</h1>
-
+        <span class="w-full">
+            <h2>Welcome</h2>
+            <h1>Some-Dood</h1>
+        </span>
         <span class="flex w-full justify-between">
             <Select {options} bind:value disabled>Device Mac:</Select>
             <Text --text-bg={COLORS.green[500]}>Connected</Text>
         </span>
+        <h2>System Log:</h2>
         <Background />
     </div>
 </Layout>
