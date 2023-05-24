@@ -65,7 +65,7 @@
         },
     ];
 
-    let active = false;
+    let active = true;
 </script>
 
 <Layout>
