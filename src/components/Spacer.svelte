@@ -1,4 +1,4 @@
-<div />
+<div class="shrink-0" />
 
 <style>
     div {
