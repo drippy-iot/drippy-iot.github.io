@@ -30,7 +30,7 @@
 
 <style>
     button {
-        @apply px-6 py-2;
+        @apply px-4 py-2;
         @apply bg-slate-700;
         @apply rounded-full;
         @apply text-white;
