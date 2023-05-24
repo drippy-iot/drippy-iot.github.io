@@ -1,4 +1,7 @@
-<script>
+<script lang="ts">
+    import COLORS from 'tailwindcss/colors';
+    import { format } from 'date-fns';
+
     import Layout from '../../components/Layout.svelte';
     import Select from '../../components/Select/Select.svelte';
     import Spacer from '../../components/Spacer.svelte';
@@ -6,10 +9,58 @@
     import TabItem from '../../components/Tab/TabItem.svelte';
     import Text from '../../components/Text.svelte';
     import Background from './Background.svelte';
-    import COLORS from 'tailwindcss/colors';
 
     const options = ['ad:ad:ad:ad', '00:00:00:00', 'co:de:ba:be'];
     let value = options[0];
+    enum LogType {
+        AUTO_CLOSE,
+        MAN_CLOSE,
+        OPEN,
+    }
+
+    const LOG_TYPE_COLORS = {
+        [LogType.AUTO_CLOSE]: { bg: COLORS.slate[900], fg: COLORS.white },
+        [LogType.MAN_CLOSE]: { bg: COLORS.slate[700], fg: COLORS.white },
+        [LogType.OPEN]: { bg: COLORS.white, fg: COLORS.slate[900] },
+    };
+
+    const LOG_TYPE_TEXT = {
+        [LogType.AUTO_CLOSE]: 'Automatically closed valve.',
+        [LogType.MAN_CLOSE]: 'Manually closed valve.',
+        [LogType.OPEN]: 'Valve has been reopened',
+    };
+
+    const LOGS = [
+        {
+            timestamp: new Date(),
+            type: LogType.AUTO_CLOSE,
+        },
+        {
+            timestamp: new Date(),
+            type: LogType.OPEN,
+        },
+        {
+            timestamp: new Date(),
+            type: LogType.MAN_CLOSE,
+        },
+
+        {
+            timestamp: new Date(),
+            type: LogType.OPEN,
+        },
+        {
+            timestamp: new Date(),
+            type: LogType.MAN_CLOSE,
+        },
+        {
+            timestamp: new Date(),
+            type: LogType.OPEN,
+        },
+        {
+            timestamp: new Date(),
+            type: LogType.AUTO_CLOSE,
+        },
+    ];
 </script>
 
 <Layout>
@@ -24,7 +75,19 @@
             <Text --text-bg={COLORS.green[500]}>Connected</Text>
         </span>
         <Spacer />
-        <h2>System Log:</h2>
+        <h2 class="w-full">System Log:</h2>
+        <div class="flex h-[25cqh] w-full flex-col overflow-auto">
+            {#each LOGS as log}
+                <Text
+                    --text-bg={LOG_TYPE_COLORS[log.type].bg}
+                    --text-fg={LOG_TYPE_COLORS[log.type].fg}
+                    >{format(log.timestamp, 'MMM d h:mm:ss')}-{LOG_TYPE_TEXT[
+                        log.type
+                    ]}</Text
+                >
+                <Spacer />
+            {/each}
+        </div>
         <TabGroup>
             <TabItem>Dashboard</TabItem>
             <TabItem>Settings</TabItem>
