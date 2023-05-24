@@ -85,7 +85,7 @@
                         log.type
                     ]}</Text
                 >
-                <Spacer />
+                <Spacer --length="0.5rem" />
             {/each}
         </div>
         <TabGroup>
