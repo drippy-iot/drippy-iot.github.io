@@ -1,7 +1,7 @@
 <script>
     import Layout from '../../components/Layout.svelte';
     import Select from '../../components/Select/Select.svelte';
-    import Text from '../../components/Tab/Text.svelte';
+    import Text from '../../components/Text.svelte';
     import Background from './Background.svelte';
     import COLORS from 'tailwindcss/colors';
 
