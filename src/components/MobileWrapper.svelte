@@ -12,7 +12,7 @@
         transform: translate(-50%, -50%);
 
         width: clamp(360px, 100svw, 540px);
-        height: clamp(640px, 100svh, 960px);
+        height: clamp(667px, 100svh, 960px);
 
         --border-size: 16px;
         --border-radius: 16px;
