@@ -53,6 +53,7 @@
         "prettier": "^2.8.8",
         "prettier-plugin-svelte": "^2.10.0",
         "prettier-plugin-tailwindcss": "^0.3.0",
+        "process": "^0.11.10",
         "svelte": "^3.59.1",
         "svelte-eslint-parser": "^0.29.0",
         "svelte-preprocess": "^5.0.3",
