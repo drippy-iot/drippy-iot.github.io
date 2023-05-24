@@ -5,6 +5,7 @@
     export let name: HTMLInputElement['name'];
     export let value: Option;
     export let options: Option[];
+    export let disabled: boolean | undefined;
 
     let open = false;
 
@@ -14,7 +15,7 @@
 </script>
 
 <span>
-    <button on:click={toggle}>
+    <button on:click={toggle} {disabled}>
         <label for={name}><slot /></label>
         <input
             type="text"
@@ -33,6 +34,15 @@
         @apply bg-slate-700;
         @apply rounded-full;
         @apply text-white;
+    }
+
+    button:not(:disabled):after {
+        content: '▼';
+        font-size: 0.75em;
+        line-height: 1.25em;
+    }
+    button:disabled input {
+        @apply outline-none;
     }
 
     input {
