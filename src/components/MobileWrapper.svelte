@@ -11,7 +11,7 @@
         left: 50%;
         transform: translate(-50%, -50%);
 
-        width: clamp(340px, 100svw, 540px);
+        width: clamp(360px, 100svw, 540px);
         height: clamp(640px, 100svh, 960px);
 
         --border-size: 16px;
