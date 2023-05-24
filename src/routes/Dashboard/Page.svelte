@@ -1,6 +1,8 @@
 <script lang="ts">
     import COLORS from 'tailwindcss/colors';
     import { format } from 'date-fns';
+    import MdDashboard from 'svelte-icons/md/MdDashboard.svelte';
+    import MdSettings from 'svelte-icons/md/MdSettings.svelte';
 
     import Layout from '../../components/Layout.svelte';
     import Select from '../../components/Select/Select.svelte';
@@ -93,12 +95,12 @@
         </div>
         <TabGroup>
             <div
-                class="absolute left-1/2 top-[-75%] box-content h-14 w-14 translate-x-[-50%] transform rounded-full bg-white p-2"
+                class="absolute left-1/2 top-[-75%] box-content h-14 w-14 translate-x-[-50%] transform rounded-full bg-white p-1.5"
             >
                 <Valve bind:active on:click={() => (active = !active)} />
             </div>
-            <TabItem>Dashboard</TabItem>
-            <TabItem>Settings</TabItem>
+            <TabItem active><MdDashboard /></TabItem>
+            <TabItem><MdSettings /></TabItem>
         </TabGroup>
         <Background />
     </div>
