@@ -25,6 +25,7 @@
         @apply text-blue-500 opacity-30;
         @apply wrapper flex flex-col;
         @apply absolute top-0;
+        @apply z-[-999];
     }
 
     .wave:after {
