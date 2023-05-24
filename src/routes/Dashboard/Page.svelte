@@ -9,6 +9,7 @@
     import TabItem from '../../components/Tab/TabItem.svelte';
     import Text from '../../components/Text.svelte';
     import Background from './Background.svelte';
+    import Valve from '../../components/Valve.svelte';
 
     const options = ['ad:ad:ad:ad', '00:00:00:00', 'co:de:ba:be'];
     let value = options[0];
@@ -61,6 +62,8 @@
             type: LogType.AUTO_CLOSE,
         },
     ];
+
+    let active = false;
 </script>
 
 <Layout>
@@ -76,7 +79,7 @@
         </span>
         <Spacer />
         <h2 class="w-full">System Log:</h2>
-        <div class="flex h-[25cqh] w-full flex-col overflow-auto">
+        <div class="flex h-[20cqh] w-full flex-col overflow-auto">
             {#each LOGS as log}
                 <Text
                     --text-bg={LOG_TYPE_COLORS[log.type].bg}
@@ -89,6 +92,11 @@
             {/each}
         </div>
         <TabGroup>
+            <div
+                class="absolute left-1/2 top-[-75%] box-content h-14 w-14 translate-x-[-50%] transform rounded-full bg-white p-2"
+            >
+                <Valve bind:active on:click={() => (active = !active)} />
+            </div>
             <TabItem>Dashboard</TabItem>
             <TabItem>Settings</TabItem>
         </TabGroup>
