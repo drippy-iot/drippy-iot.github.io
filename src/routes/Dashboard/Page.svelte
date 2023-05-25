@@ -15,7 +15,7 @@
     import type { Option } from '../../components/Select/types.ts';
 
     const options: Option[] = ['ad:ad:ad:ad', '00:00:00:00', 'co:de:ba:be'];
-    let value = options[0];
+    let value: Option = options[0] || '';
     enum LogType {
         AUTO_CLOSE,
         MAN_CLOSE,
