@@ -13,8 +13,8 @@ export class InvalidSession extends Error {
 }
 
 export class ServiceUnavailable extends Error {
-    constructor(){
-        super('service is unavailable')
+    constructor() {
+        super('service is unavailable');
     }
 }
 
