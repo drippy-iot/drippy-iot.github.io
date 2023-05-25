@@ -39,9 +39,7 @@ export async function requestShutdown(): Promise<boolean> {
  * starting from the Last-Modified Date which should be when the data was last updated.
  *
  * Returns the JSON response if the request is successful. Else, it will throw an error.
- *
  */
-
 export async function getMetrics(lastModified: Date): Promise<JSON> {
     const res = await fetch('/api/metrics', {
         credentials: 'include',
