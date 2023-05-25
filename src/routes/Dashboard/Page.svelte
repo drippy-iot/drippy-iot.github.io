@@ -77,7 +77,9 @@
         </span>
         <Spacer --length="25cqh" />
         <span class="flex w-full justify-between">
-            <Select {options} bind:value disabled>Device Mac:</Select>
+            <Select name="mac" {options} bind:value disabled>
+                Device Mac:
+            </Select>
             <Text --text-bg={COLORS.green[500]}>Connected</Text>
         </span>
         <Spacer />
