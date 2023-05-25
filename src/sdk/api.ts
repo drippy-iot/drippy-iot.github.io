@@ -1,6 +1,6 @@
 import { StatusCodes } from 'http-status-codes';
 
-import { InvalidSession, UnexpectedStatusCode } from './error.ts';
+import { BadInput, InvalidSession, ServiceUnavailable, UnexpectedStatusCode } from './error.ts';
 
 /**
  * Assuming that the user has already logged in (i.e., there exists a valid session ID
@@ -25,5 +25,26 @@ export async function requestShutdown(): Promise<boolean> {
             throw new InvalidSession();
         default:
             throw new UnexpectedStatusCode(status);
+    }
+}
+
+export async function getMetrics(lastModified: Date): Promise<JSON>{
+    const res = await fetch('/api/metrics', {
+        credentials: 'same-origin',
+        headers: {  'Accept': 'application/json',
+                    'Last-Modified': lastModified.toString()},
+    });
+
+    switch (res.status){
+        case StatusCodes.OK:
+            return res.json();
+        case StatusCodes.SERVICE_UNAVAILABLE:
+            throw new ServiceUnavailable();
+        case StatusCodes.UNAUTHORIZED:
+            throw new InvalidSession();
+        case StatusCodes.BAD_REQUEST:
+            throw new BadInput();
+        default:
+            throw new UnexpectedStatusCode(res.status);   
     }
 }
