@@ -84,7 +84,7 @@
         </span>
         <Spacer />
         <h2 class="w-full">System Log:</h2>
-        <div class="flex h-[20cqh] w-full flex-col overflow-auto">
+        <div class="flex h-[40cqh] w-full flex-col overflow-auto">
             {#each LOGS as log}
                 <Text
                     --text-bg={LOG_TYPE_COLORS[log.type].bg}
