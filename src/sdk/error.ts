@@ -12,6 +12,12 @@ export class InvalidSession extends Error {
     }
 }
 
+export class ServiceUnavailable extends Error {
+    constructor(){
+        super('service is unavailable')
+    }
+}
+
 export class UnexpectedStatusCode extends Error {
     #code: StatusCodes;
 
