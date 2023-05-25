@@ -44,13 +44,12 @@ export async function requestShutdown(): Promise<boolean> {
 
 export async function getMetrics(lastModified: Date): Promise<JSON> {
     const res = await fetch('/api/metrics', {
-        credentials: 'same-origin',
+        credentials: 'include',
         headers: {
             Accept: 'application/json',
             'Last-Modified': lastModified.toString(),
         },
     });
-
     switch (res.status) {
         case StatusCodes.OK:
             return res.json();
