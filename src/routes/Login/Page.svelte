@@ -39,7 +39,7 @@
     }
 
     .logo h1 {
-        @apply text-center text-3xl leading-loose;
+        @apply text-center leading-loose;
     }
 
     button {

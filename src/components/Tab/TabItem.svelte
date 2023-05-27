@@ -1,5 +1,5 @@
 <script lang="ts">
-    export let active: boolean;
+    export let active = false;
 </script>
 
 <button on:click class:active>

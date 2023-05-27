@@ -5,6 +5,7 @@
     export let name: HTMLInputElement['name'];
     export let value: Option;
     export let options: Option[];
+    export let disabled = false;
 
     let open = false;
 
@@ -14,8 +15,8 @@
 </script>
 
 <span>
-    <button on:click={toggle}>
-        <label for={name}> Device Mac:</label>
+    <button on:click={toggle} {disabled}>
+        <label for={name}><slot /></label>
         <input
             type="text"
             {name}
@@ -29,10 +30,19 @@
 
 <style>
     button {
-        @apply px-6 py-2;
+        @apply px-4 py-2;
         @apply bg-slate-700;
         @apply rounded-full;
         @apply text-white;
+    }
+
+    button:not(:disabled):after {
+        content: '▼';
+        font-size: 0.75em;
+        line-height: 1.25em;
+    }
+    button:disabled input {
+        @apply outline-none;
     }
 
     input {

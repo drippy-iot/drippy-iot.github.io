@@ -4,6 +4,10 @@
 @tailwind utilities;
 
 @layer base {
+    :root {
+        font-size: clamp(16px, 4vw, 24px);
+    }
+
     body {
         font-family: Poppins, Arial, sans-serif;
         letter-spacing: 0.05rem;
@@ -14,5 +18,17 @@
         font-smooth: never;
 
         @apply text-slate-900;
+    }
+
+    h1 {
+        @apply text-3xl;
+    }
+
+    h2 {
+        @apply text-base;
+    }
+
+    p {
+        @apply text-sm;
     }
 }

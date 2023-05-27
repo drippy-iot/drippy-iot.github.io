@@ -12,7 +12,12 @@
     button {
         --transition-duration: 0.5s;
 
-        @apply block h-5 w-5;
+        @apply block h-full w-full;
+    }
+
+    button :global(svg) {
+        height: 100%;
+        width: 100%;
     }
 
     :global(button.active #Gear) {
