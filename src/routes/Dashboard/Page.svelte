@@ -84,7 +84,7 @@
         </span>
         <h2 class="w-full">System Log:</h2>
         <div class="flex w-full flex-1 flex-col gap-2 overflow-auto">
-            {#each [...LOGS, ...LOGS] as log}
+            {#each LOGS as log}
                 <Text
                     --text-bg={LOG_TYPE_COLORS[log.type].bg}
                     --text-fg={LOG_TYPE_COLORS[log.type].fg}
