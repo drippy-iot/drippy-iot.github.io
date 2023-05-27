@@ -95,14 +95,14 @@
             {/each}
         </div>
         <TabGroup>
-            <div
-                class="absolute left-1/2 top-[-75%] box-content h-14 w-14 translate-x-[-50%] transform rounded-full bg-white p-1.5"
-            >
-                <Valve bind:active on:click={() => (active = !active)} />
-            </div>
             <TabItem active><MdDashboard /></TabItem>
             <TabItem><MdSettings /></TabItem>
         </TabGroup>
+        <div
+            class="absolute bottom-4 left-1/2 box-content h-14 w-14 translate-x-[-50%] transform rounded-full bg-white p-1.5"
+        >
+            <Valve bind:active on:click={() => (active = !active)} />
+        </div>
         <Background />
     </div>
 </Layout>
