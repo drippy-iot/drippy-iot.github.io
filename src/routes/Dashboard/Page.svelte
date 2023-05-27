@@ -70,7 +70,7 @@
 </script>
 
 <Layout>
-    <div class="wrapper flex flex-col items-center p-4 text-xs">
+    <div class="flex h-full w-full flex-col items-center gap-4 p-4 text-xs">
         <span class="w-full">
             <h2>Welcome</h2>
             <h1>Some-Dood</h1>
@@ -82,9 +82,8 @@
             </Select>
             <Text --text-bg={COLORS.green[500]}>Connected</Text>
         </span>
-        <Spacer />
         <h2 class="w-full">System Log:</h2>
-        <div class="flex h-[40cqh] w-full flex-col overflow-auto">
+        <div class="flex w-full flex-1 flex-col gap-2 overflow-auto">
             {#each LOGS as log}
                 <Text
                     --text-bg={LOG_TYPE_COLORS[log.type].bg}
@@ -93,7 +92,6 @@
                         log.type
                     ]}</Text
                 >
-                <Spacer --length="0.5rem" />
             {/each}
         </div>
         <TabGroup>
