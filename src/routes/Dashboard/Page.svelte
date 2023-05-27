@@ -14,57 +14,14 @@
     import Valve from '../../components/Valve.svelte';
     import type { Option } from '../../components/Select/types.ts';
 
-    const options: Option[] = ['ad:ad:ad:ad', '00:00:00:00', 'co:de:ba:be'];
-    let value: Option = options[0] || '';
-    enum LogType {
-        AUTO_CLOSE,
-        MAN_CLOSE,
-        OPEN,
-    }
+    import {
+        LOGS,
+        LOG_TYPE_TEXT,
+        LOG_TYPE_COLORS,
+        OPTIONS,
+    } from './constants.ts';
 
-    const LOG_TYPE_COLORS = {
-        [LogType.AUTO_CLOSE]: { bg: COLORS.slate[900], fg: COLORS.white },
-        [LogType.MAN_CLOSE]: { bg: COLORS.slate[700], fg: COLORS.white },
-        [LogType.OPEN]: { bg: COLORS.white, fg: COLORS.slate[900] },
-    };
-
-    const LOG_TYPE_TEXT = {
-        [LogType.AUTO_CLOSE]: 'Automatically closed valve.',
-        [LogType.MAN_CLOSE]: 'Manually closed valve.',
-        [LogType.OPEN]: 'Valve has been reopened',
-    };
-
-    const LOGS = [
-        {
-            timestamp: new Date(),
-            type: LogType.AUTO_CLOSE,
-        },
-        {
-            timestamp: new Date(),
-            type: LogType.OPEN,
-        },
-        {
-            timestamp: new Date(),
-            type: LogType.MAN_CLOSE,
-        },
-
-        {
-            timestamp: new Date(),
-            type: LogType.OPEN,
-        },
-        {
-            timestamp: new Date(),
-            type: LogType.MAN_CLOSE,
-        },
-        {
-            timestamp: new Date(),
-            type: LogType.OPEN,
-        },
-        {
-            timestamp: new Date(),
-            type: LogType.AUTO_CLOSE,
-        },
-    ];
+    let value: Option = OPTIONS[0] || '';
 
     let active = true;
 </script>
@@ -77,7 +34,7 @@
         </span>
         <Spacer --length="25cqh" />
         <span class="flex w-full justify-between">
-            <Select name="mac" {options} bind:value disabled>
+            <Select name="mac" options={OPTIONS} bind:value disabled>
                 Device Mac:
             </Select>
             <Text --text-bg={COLORS.green[500]}>Connected</Text>
