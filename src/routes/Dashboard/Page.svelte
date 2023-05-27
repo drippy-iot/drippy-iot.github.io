@@ -70,7 +70,7 @@
 </script>
 
 <Layout>
-    <div class="flex h-full w-full flex-col items-center gap-4 p-4 text-xs">
+    <div class="wrapper flex flex-col items-center gap-4 p-4 text-xs">
         <span class="w-full">
             <h2>Welcome</h2>
             <h1>Some-Dood</h1>
@@ -84,7 +84,7 @@
         </span>
         <h2 class="w-full">System Log:</h2>
         <div class="flex w-full flex-1 flex-col gap-2 overflow-auto">
-            {#each LOGS as log}
+            {#each [...LOGS, ...LOGS] as log}
                 <Text
                     --text-bg={LOG_TYPE_COLORS[log.type].bg}
                     --text-fg={LOG_TYPE_COLORS[log.type].fg}
@@ -106,3 +106,13 @@
         <Background />
     </div>
 </Layout>
+
+<style>
+    .wrapper {
+        @apply h-full w-full;
+        /* offset of valve from bottom + valve height + original p-4 */
+        padding-bottom: calc(
+            theme(spacing.4) + theme(spacing.14) + theme(spacing.4)
+        );
+    }
+</style>
