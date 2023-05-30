@@ -57,8 +57,20 @@ export async function requestShutdown(): Promise<boolean> {
 
 export type MetricsCallback = (message: UserMessage) => void;
 
-export async function getMetrics(since: Date, callback: MetricsCallback): Promise<UserMessage[]> {
-    const source = new EventSource(`/api/metrics?start=${since.valueOf()}`, { withCredentials: true });
+export interface MetricsListener {
+    /** An array of all data points to be used as an initial reference point. */
+    init: UserMessage[];
+    /** Manually closes the underlying {@linkcode EventSource}. */
+    close(): void;
+}
+
+export async function getMetrics(
+    since: Date,
+    callback: MetricsCallback
+): Promise<MetricsListener> {
+    const source = new EventSource(`/api/metrics?start=${since.valueOf()}`, {
+        withCredentials: true,
+    });
 
     // Attempt to connect to the server
     await new Promise((resolve, reject) => {
@@ -69,18 +81,27 @@ export async function getMetrics(since: Date, callback: MetricsCallback): Promis
     // Receive only the first message
     const first = await new Promise((resolve, reject) => {
         source.addEventListener('error', reject, { once: true, passive: true });
-        source.addEventListener('message', ({ data }) => resolve(data), { once: true, passive: true });
+        source.addEventListener('message', ({ data }) => resolve(data), {
+            once: true,
+            passive: true,
+        });
     });
     assert(typeof first === 'string');
     const init = UserMessageSchema.array().parse(JSON.parse(first));
 
     // NOTE: From this point forward, we silently consume the errors.
-    source.addEventListener('error', console.error.bind(console), { passive: true });
-    source.addEventListener('message', ({ data }) => {
-        assert(typeof data === 'string');
-        const json = JSON.parse(data);
-        callback(UserMessageSchema.parse(json));
-    }, { passive: true });
+    source.addEventListener('error', console.error.bind(console), {
+        passive: true,
+    });
+    source.addEventListener(
+        'message',
+        ({ data }) => {
+            assert(typeof data === 'string');
+            const json = JSON.parse(data);
+            callback(UserMessageSchema.parse(json));
+        },
+        { passive: true }
+    );
 
-    return init;
+    return { init, close: source.close.bind(source) };
 }
