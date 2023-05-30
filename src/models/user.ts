@@ -20,7 +20,7 @@ export const ControlSchema = z.object({
 });
 export type Control = z.infer<typeof ControlSchema>;
 
-export const UserMessageSchema = z.union([
+export const UserMessageSchema = z.discriminatedUnion('ty', [
     FlowSchema,
     LeakSchema,
     ControlSchema,
