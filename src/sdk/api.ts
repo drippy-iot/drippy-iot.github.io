@@ -1,6 +1,8 @@
 import { StatusCodes } from 'http-status-codes';
 
+import { assert } from '../assert.ts';
 import { InvalidSession, UnexpectedStatusCode } from './error.ts';
+import { type UserMessage, UserMessageSchema } from '../models/user.ts';
 
 /**
  * Assuming that the user has already logged in (i.e., there exists a valid session ID
@@ -51,4 +53,34 @@ export async function requestShutdown(): Promise<boolean> {
         default:
             throw new UnexpectedStatusCode(status);
     }
+}
+
+export type MetricsCallback = (message: UserMessage) => void;
+
+export async function getMetrics(since: Date, callback: MetricsCallback): Promise<UserMessage[]> {
+    const source = new EventSource(`/api/metrics?start=${since.valueOf()}`, { withCredentials: true });
+
+    // Attempt to connect to the server
+    await new Promise((resolve, reject) => {
+        source.addEventListener('error', reject, { once: true, passive: true });
+        source.addEventListener('open', resolve, { once: true, passive: true });
+    });
+
+    // Receive only the first message
+    const first = await new Promise((resolve, reject) => {
+        source.addEventListener('error', reject, { once: true, passive: true });
+        source.addEventListener('message', ({ data }) => resolve(data), { once: true, passive: true });
+    });
+    assert(typeof first === 'string');
+    const init = UserMessageSchema.array().parse(JSON.parse(first));
+
+    // NOTE: From this point forward, we silently consume the errors.
+    source.addEventListener('error', console.error.bind(console), { passive: true });
+    source.addEventListener('message', ({ data }) => {
+        assert(typeof data === 'string');
+        const json = JSON.parse(data);
+        callback(UserMessageSchema.parse(json));
+    }, { passive: true });
+
+    return init;
 }
