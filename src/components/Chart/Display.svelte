@@ -29,13 +29,34 @@
             x: {
                 type: 'realtime',
                 time: {
-                    unit: 'second',
+                    minUnit: 'second',
+                    displayFormats: {
+                        minute: 'mm:ss',
+                        second: 'mm:ss',
+                        hour: 'h:mm a',
+                    },
                 },
             },
         },
         plugins: {
             streaming: {
                 duration: 20000,
+                ttl: 3600000,
+            },
+            zoom: {
+                zoom: {
+                    wheel: {
+                        enabled: true,
+                    },
+                    pinch: {
+                        enabled: true,
+                    },
+                    mode: 'x',
+                },
+                pan: {
+                    enabled: true,
+                    mode: 'x',
+                },
             },
         },
     };
