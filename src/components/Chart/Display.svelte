@@ -58,6 +58,9 @@
                     mode: 'x',
                 },
             },
+            legend: {
+                display: false,
+            },
         },
     };
 
