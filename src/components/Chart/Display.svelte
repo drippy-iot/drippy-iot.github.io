@@ -4,9 +4,15 @@
     import Chart from 'chart.js/auto';
     import type { ChartConfiguration } from 'chart.js';
     import 'chartjs-adapter-date-fns';
+    import ChartStreaming from 'chartjs-plugin-streaming';
+    import ChartZoom from 'chartjs-plugin-zoom';
+
+    Chart.register(ChartStreaming);
+    Chart.register(ChartZoom);
 
     let canvas: HTMLCanvasElement;
 
+    // Chart Configuration Data
     const data: ChartConfiguration['data'] = {
         datasets: [
             {
@@ -15,6 +21,7 @@
         ],
     };
 
+    // Chart Configuration Options
     const options: ChartConfiguration['options'] = {
         scales: {
             x: {
