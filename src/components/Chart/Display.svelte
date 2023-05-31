@@ -20,8 +20,10 @@
         datasets: [
             {
                 data: [],
-                cubicInterpolationMode: 'monotone',
-                tension: 0.1,
+                fill: 'start',
+                backgroundColor: `${colors.blue[500]}40`,
+                borderColor: colors.blue[500],
+                pointStyle: false,
             },
         ],
     };
