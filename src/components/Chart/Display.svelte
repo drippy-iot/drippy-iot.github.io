@@ -24,6 +24,8 @@
                 backgroundColor: `${colors.blue[500]}40`,
                 borderColor: colors.blue[500],
                 pointStyle: false,
+                cubicInterpolationMode: 'monotone',
+                tension: 0.5,
             },
         ],
     };
@@ -53,12 +55,13 @@
                     display: false,
                 },
                 grid: {
-                    color: `${Chart.defaults.color}30`,
+                    color: `${Chart.defaults.color}20`,
                 },
                 ticks: {
                     mirror: true,
                     padding: 0,
                     stepSize: 10,
+                    z: 1,
                 },
                 suggestedMax: 100,
                 beginAtZero: true,
