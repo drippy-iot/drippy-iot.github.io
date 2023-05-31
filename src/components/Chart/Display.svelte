@@ -11,6 +11,7 @@
     Chart.register(ChartStreaming);
     Chart.register(ChartZoom);
     Chart.defaults.color = colors.slate[500];
+    Chart.defaults.font.family = 'Poppins, Arial, sans-serif';
 
     let canvas: HTMLCanvasElement;
 
@@ -52,6 +53,7 @@
                 grid: {
                     color: `${Chart.defaults.color}30`,
                 },
+                ticks: { mirror: true, padding: 0 },
             },
         },
         plugins: {
