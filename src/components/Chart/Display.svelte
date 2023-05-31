@@ -17,6 +17,8 @@
         datasets: [
             {
                 data: [],
+                cubicInterpolationMode: 'monotone',
+                tension: 0.1,
             },
         ],
     };
@@ -25,10 +27,15 @@
     const options: ChartConfiguration['options'] = {
         scales: {
             x: {
-                type: 'timeseries',
+                type: 'realtime',
                 time: {
                     unit: 'second',
                 },
+            },
+        },
+        plugins: {
+            streaming: {
+                duration: 20000,
             },
         },
     };
@@ -40,7 +47,7 @@
             ...$flow.map(flow => ({ x: flow.ts.getTime(), y: flow.flow }))
         );
         $flow = [];
-        chart?.update();
+        chart?.update('quiet');
     }
 
     onMount(() => {
