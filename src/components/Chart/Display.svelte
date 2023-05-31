@@ -6,9 +6,11 @@
     import 'chartjs-adapter-date-fns';
     import ChartStreaming from 'chartjs-plugin-streaming';
     import ChartZoom from 'chartjs-plugin-zoom';
+    import colors from 'tailwindcss/colors';
 
     Chart.register(ChartStreaming);
     Chart.register(ChartZoom);
+    Chart.defaults.color = colors.slate[500];
 
     let canvas: HTMLCanvasElement;
 
@@ -35,6 +37,20 @@
                         second: 'mm:ss',
                         hour: 'h:mm a',
                     },
+                },
+                grid: {
+                    display: false,
+                },
+                border: {
+                    display: false,
+                },
+            },
+            y: {
+                border: {
+                    display: false,
+                },
+                grid: {
+                    color: `${Chart.defaults.color}30`,
                 },
             },
         },
