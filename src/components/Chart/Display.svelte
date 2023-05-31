@@ -21,7 +21,7 @@
             {
                 data: [],
                 fill: 'start',
-                backgroundColor: `${colors.blue[500]}40`,
+                backgroundColor: colors.blue[200],
                 borderColor: colors.blue[500],
                 pointStyle: false,
                 cubicInterpolationMode: 'monotone',
