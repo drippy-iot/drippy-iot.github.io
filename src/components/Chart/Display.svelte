@@ -53,7 +53,13 @@
                 grid: {
                     color: `${Chart.defaults.color}30`,
                 },
-                ticks: { mirror: true, padding: 0 },
+                ticks: {
+                    mirror: true,
+                    padding: 0,
+                    stepSize: 10,
+                },
+                suggestedMax: 100,
+                beginAtZero: true,
             },
         },
         plugins: {
