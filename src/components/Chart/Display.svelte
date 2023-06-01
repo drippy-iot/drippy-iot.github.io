@@ -96,7 +96,7 @@
             autoPadding: false,
             padding: {
                 left: -25,
-                right: -5,
+                right: -25,
             },
         },
     };
