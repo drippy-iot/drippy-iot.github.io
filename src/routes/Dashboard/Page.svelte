@@ -20,6 +20,7 @@
         LOG_TYPE_COLORS,
         OPTIONS,
     } from './constants.ts';
+    import Display from '../../components/Chart/Display.svelte';
 
     let value: Option = OPTIONS[0] || '';
 
@@ -32,7 +33,9 @@
             <h2>Welcome</h2>
             <h1>Some-Dood</h1>
         </span>
-        <Spacer --length="25cqh" />
+        <div class="flex max-h-[30cqh] w-[100cqw] justify-center">
+            <Display />
+        </div>
         <span class="flex w-full justify-between">
             <Select name="mac" options={OPTIONS} bind:value disabled>
                 Device Mac:
