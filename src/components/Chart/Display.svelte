@@ -57,7 +57,7 @@
                 },
                 ticks: {
                     mirror: true,
-                    padding: 0,
+                    padding: 10,
                     stepSize: 10,
                     z: 1,
                 },
@@ -94,7 +94,9 @@
         },
         layout: {
             autoPadding: false,
-            padding: 0,
+            padding: {
+                left: -25,
+            },
         },
     };
 
