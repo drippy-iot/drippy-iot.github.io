@@ -24,8 +24,6 @@
                 backgroundColor: colors.blue[200],
                 borderColor: colors.blue[500],
                 pointStyle: false,
-                cubicInterpolationMode: 'monotone',
-                tension: 0.5,
             },
         ],
     };
@@ -93,6 +91,10 @@
             tooltip: {
                 enabled: false,
             },
+        },
+        layout: {
+            autoPadding: false,
+            padding: 0,
         },
     };
 
