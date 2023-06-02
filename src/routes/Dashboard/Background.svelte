@@ -36,14 +36,14 @@
     }
 
     .wave.one {
-        @apply top-[30cqh];
-    }
-
-    .wave.two {
         @apply top-[40cqh];
     }
 
-    .wave.three {
+    .wave.two {
         @apply top-[50cqh];
+    }
+
+    .wave.three {
+        @apply top-[60cqh];
     }
 </style>
