@@ -106,10 +106,14 @@
     $: {
         // Update chart upon retrieving data and clear buffer.
         const chart = Chart.getChart(canvas);
-        chart?.data.datasets[0]?.data.push(
-            ...$flow.map(flow => ({ x: flow.ts.getTime(), y: flow.flow }))
-        );
-        $flow = [];
+        const points = $flow
+            .splice(0)
+            .map(({ ts, flow }) => ({
+                x: ts.getTime(),
+                y: flow,
+            }));
+        $flow = $flow; // notify mutation
+        chart?.data.datasets[0]?.data.push(...points);
         chart?.update('quiet');
     }
 
