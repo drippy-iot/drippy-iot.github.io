@@ -1,12 +1,14 @@
 <script lang="ts">
-    import { onMount } from 'svelte';
-    import { flow } from './mock.ts';
-    import Chart from 'chart.js/auto';
     import type { ChartConfiguration } from 'chart.js';
-    import 'chartjs-adapter-date-fns';
+    import Chart from 'chart.js/auto';
     import ChartStreaming from 'chartjs-plugin-streaming';
     import ChartZoom from 'chartjs-plugin-zoom';
+    import { onMount } from 'svelte';
     import colors from 'tailwindcss/colors';
+
+    import 'chartjs-adapter-date-fns';
+
+    import { flow } from './mock.ts';
 
     Chart.register(ChartStreaming);
     Chart.register(ChartZoom);
