@@ -6,7 +6,6 @@
 
     import Layout from '../../components/Layout.svelte';
     import Select from '../../components/Select/Select.svelte';
-    import Spacer from '../../components/Spacer.svelte';
     import TabGroup from '../../components/Tab/TabGroup.svelte';
     import TabItem from '../../components/Tab/TabItem.svelte';
     import Text from '../../components/Text.svelte';
