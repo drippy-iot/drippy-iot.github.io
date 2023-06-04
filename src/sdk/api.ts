@@ -4,24 +4,33 @@ import { assert } from '../assert.ts';
 import { InvalidSession, UnexpectedStatusCode } from './error.ts';
 import { type UserMessage, UserMessageSchema } from '../models/user.ts';
 
+/** The previous state of the database. */
+export const enum State {
+    /** No pending commands. */
+    None,
+    /** Issued command is the same as the pending one. */
+    Same,
+    /** Issued command nullifies the pending one. */
+    Different,
+}
+
 /**
  * Assuming that the user has already logged in (i.e., there exists a valid session ID
  * in the cookie store), this endpoint sends a request to the Cloud to reset or manually
  * bypass a locked unit (i.e., "closed valve").
- *
- * Returns `true` if the unit was previously locked. Returns `false` if the device is
- * already unlocked (due to a previous invocation for example).
  */
-export async function requestReset(): Promise<boolean> {
+export async function requestReset(): Promise<State> {
     const { status } = await fetch('/api/reset', {
         method: 'POST',
         credentials: 'include',
     });
     switch (status) {
-        case StatusCodes.OK:
-            return true;
-        case StatusCodes.ACCEPTED:
-            return false;
+        case StatusCodes.CREATED:
+            return State.None;
+        case StatusCodes.NO_CONTENT:
+            return State.Same;
+        case StatusCodes.RESET_CONTENT:
+            return State.Different;
         case StatusCodes.UNAUTHORIZED:
             throw new InvalidSession();
         default:
@@ -38,16 +47,18 @@ export async function requestReset(): Promise<boolean> {
  * previous invocation has already requested the shutdown, but the device is yet to poll
  * the server for its remote shutdown.
  */
-export async function requestShutdown(): Promise<boolean> {
+export async function requestShutdown(): Promise<State> {
     const { status } = await fetch('/api/shutdown', {
         method: 'POST',
         credentials: 'include',
     });
     switch (status) {
-        case StatusCodes.OK:
-            return true;
-        case StatusCodes.ACCEPTED:
-            return false;
+        case StatusCodes.CREATED:
+            return State.None;
+        case StatusCodes.NO_CONTENT:
+            return State.Same;
+        case StatusCodes.RESET_CONTENT:
+            return State.Different;
         case StatusCodes.UNAUTHORIZED:
             throw new InvalidSession();
         default:

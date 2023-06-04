@@ -1,28 +1,28 @@
 import { z } from 'zod';
 
-export const FlowSchema = z.object({
+export const PingSchema = z.object({
     ty: z.literal('flow'),
     ts: z.coerce.date(),
     flow: z.number().int().nonnegative(),
+    leak: z.boolean(),
 });
-export type Flow = z.infer<typeof FlowSchema>;
+export type Ping = z.infer<typeof PingSchema>;
 
-export const LeakSchema = z.object({
-    ty: z.literal('leak'),
+export const OpenSchema = z.object({
+    ty: z.literal('open'),
     ts: z.coerce.date(),
 });
-export type Leak = z.infer<typeof LeakSchema>;
+export type Open = z.infer<typeof OpenSchema>;
 
-export const ControlSchema = z.object({
-    ty: z.literal('control'),
+export const CloseSchema = z.object({
+    ty: z.literal('close'),
     ts: z.coerce.date(),
-    shutdown: z.boolean(),
 });
-export type Control = z.infer<typeof ControlSchema>;
+export type Close = z.infer<typeof CloseSchema>;
 
 export const UserMessageSchema = z.discriminatedUnion('ty', [
-    FlowSchema,
-    LeakSchema,
-    ControlSchema,
+    PingSchema,
+    OpenSchema,
+    CloseSchema,
 ]);
 export type UserMessage = z.infer<typeof UserMessageSchema>;

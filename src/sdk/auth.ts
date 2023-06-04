@@ -2,10 +2,11 @@ import { StatusCodes } from 'http-status-codes';
 
 import { assert } from '../assert.ts';
 import { BadInput, UnexpectedStatusCode } from './error.ts';
+import { Command } from '../models/command.ts';
 
 export interface Session {
     mac: ArrayBuffer;
-    shutdown: boolean;
+    request: Command;
 }
 
 /**
@@ -19,9 +20,11 @@ export async function getSession(): Promise<Session | null> {
     assert(mac.byteLength === 6);
     switch (res.status) {
         case StatusCodes.OK:
-            return { mac, shutdown: false };
-        case StatusCodes.SERVICE_UNAVAILABLE:
-            return { mac, shutdown: true };
+            return { mac, request: Command.None };
+        case StatusCodes.ACCEPTED:
+            return { mac, request: Command.Open };
+        case StatusCodes.NO_CONTENT:
+            return { mac, request: Command.Close };
         case StatusCodes.UNAUTHORIZED:
             return null;
         default:
