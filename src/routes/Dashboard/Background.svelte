@@ -11,13 +11,13 @@
 </script>
 
 <div class="wave one">
-    <Waves ds={PATHS} duration="7s" />
+    <Waves ds={PATHS} duration="14s" />
 </div>
 <div class="wave two">
-    <Waves ds={[...PATHS.slice(1), PATHS[0]]} duration="10s" />
+    <Waves ds={[...PATHS.slice(1), PATHS[0]]} duration="20s" />
 </div>
 <div class="wave three">
-    <Waves ds={[...PATHS.slice(2), ...PATHS.slice(0, 3)]} duration="9s" />
+    <Waves ds={[...PATHS.slice(2), ...PATHS.slice(0, 3)]} duration="18s" />
 </div>
 
 <style>
