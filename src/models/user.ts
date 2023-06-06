@@ -20,9 +20,16 @@ export const CloseSchema = z.object({
 });
 export type Close = z.infer<typeof CloseSchema>;
 
+export const BypassSchema = z.object({
+    ty: z.literal('bypass'),
+    ts: z.coerce.date(),
+});
+export type Bypass = z.infer<typeof CloseSchema>;
+
 export const UserMessageSchema = z.discriminatedUnion('ty', [
     PingSchema,
     OpenSchema,
     CloseSchema,
+    BypassSchema,
 ]);
 export type UserMessage = z.infer<typeof UserMessageSchema>;
