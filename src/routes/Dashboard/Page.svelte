@@ -27,22 +27,22 @@
 </script>
 
 <Layout>
-    <div class="wrapper flex flex-col items-center gap-4 p-4 text-xs">
-        <span class="w-full">
+    <div class="wrapper grid grid-cols-1 items-center p-4 text-xs">
+        <div>
             <h2>Welcome</h2>
             <h1>Some-Dood</h1>
-        </span>
-        <div class="flex max-h-[30cqh] w-[100cqw] justify-center">
+        </div>
+        <div class="relative -left-4 max-h-[30cqh] w-[100cqw]">
             <Display />
         </div>
-        <span class="flex w-full justify-between">
+        <div class="flex justify-between">
             <Select name="mac" options={OPTIONS} bind:value disabled>
                 Device Mac:
             </Select>
             <Text --text-bg={COLORS.green[500]}>Connected</Text>
-        </span>
-        <h2 class="w-full">System Log:</h2>
-        <div class="flex w-full flex-1 flex-col gap-2 overflow-auto">
+        </div>
+        <h2 class="block">System Log:</h2>
+        <div class="grid gap-2">
             {#each LOGS as log}
                 <Text
                     --text-bg={LOG_TYPE_COLORS[log.type].bg}
@@ -53,25 +53,23 @@
                 >
             {/each}
         </div>
-        <TabGroup>
-            <TabItem active><MdDashboard /></TabItem>
-            <TabItem><MdSettings /></TabItem>
-        </TabGroup>
-        <div
-            class="absolute bottom-4 left-1/2 box-content h-14 w-14 translate-x-[-50%] transform rounded-full bg-white p-1.5"
-        >
-            <Valve bind:active on:click={() => (active = !active)} />
-        </div>
-        <Background />
     </div>
+    <TabGroup>
+        <TabItem active><MdDashboard /></TabItem>
+        <TabItem><MdSettings /></TabItem>
+    </TabGroup>
+    <div
+        class="absolute bottom-4 left-0 right-0 mx-auto box-content h-14 w-14 rounded-full bg-white p-1.5"
+    >
+        <Valve bind:active on:click={() => (active = !active)} />
+    </div>
+    <Background />
 </Layout>
 
 <style>
     .wrapper {
         @apply h-full w-full;
-        /* offset of valve from bottom + valve height + original p-4 */
-        padding-bottom: calc(
-            theme(spacing.4) + theme(spacing.14) + theme(spacing.4)
-        );
+        /* original bottom padding + tabgroup */
+        padding-bottom: calc(theme(spacing.4) + theme(spacing.12));
     }
 </style>
