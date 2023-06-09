@@ -6,7 +6,10 @@
     let active = false;
 </script>
 
-<div class="relative z-50">
+<div class="relative isolate z-50">
+    <div class="child absolute inset-0 z-[-1] m-auto h-fit w-fit" class:active>
+        <Child />
+    </div>
     <button
         class="box-content h-14 w-14 rounded-full bg-white p-1.5"
         class:active
@@ -14,7 +17,6 @@
     >
         <Drippy />
     </button>
-    <Child />
 </div>
 {#if active}
     <div
@@ -42,5 +44,11 @@
         transform: rotate(90deg);
         transform-origin: center;
         transition: transform var(--transition-duration) ease-out;
+    }
+    .child.active {
+        --distance: theme(spacing.16);
+        rotate: 0;
+        translate: 0 calc(-1 * var(--distance));
+        transform-origin: center;
     }
 </style>
