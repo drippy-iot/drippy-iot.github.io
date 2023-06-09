@@ -36,9 +36,11 @@
     </button>
 </div>
 {#if active}
+    <!-- svelte-ignore a11y-click-events-have-key-events -->
     <div
         class="fixed inset-0 bg-black bg-opacity-70"
         transition:fade={{ duration: 150 }}
+        on:click={() => (active = !active)}
     />
 {/if}
 
