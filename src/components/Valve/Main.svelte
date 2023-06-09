@@ -1,14 +1,20 @@
 <script lang="ts">
     import { fade } from 'svelte/transition';
     import Drippy from '../../assets/drippy.svelte';
+    import Child from './Child.svelte';
 
     let active = false;
 </script>
 
-<div class="relative z-50 box-content h-14 w-14 rounded-full bg-white p-1.5">
-    <button class:active on:click={() => (active = !active)}>
+<div class="relative z-50">
+    <button
+        class="box-content h-14 w-14 rounded-full bg-white p-1.5"
+        class:active
+        on:click={() => (active = !active)}
+    >
         <Drippy />
     </button>
+    <Child />
 </div>
 {#if active}
     <div
@@ -20,8 +26,6 @@
 <style>
     button {
         --transition-duration: 0.5s;
-
-        @apply block h-full w-full;
     }
 
     button :global(svg) {
