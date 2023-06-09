@@ -17,8 +17,6 @@
     import Display from '../../components/Chart/Display.svelte';
 
     let value: Option = OPTIONS[0] || '';
-
-    let active = true;
 </script>
 
 <Layout>
@@ -50,10 +48,8 @@
         <TabItem active><MdDashboard /></TabItem>
         <TabItem><MdSettings /></TabItem>
     </TabGroup>
-    <div
-        class="absolute bottom-4 left-0 right-0 mx-auto box-content h-14 w-14 rounded-full bg-white p-1.5"
-    >
-        <Valve bind:active on:click={() => (active = !active)} />
+    <div class="absolute bottom-4 left-0 right-0 mx-auto h-fit w-fit">
+        <Valve />
     </div>
     <Background />
 </Layout>

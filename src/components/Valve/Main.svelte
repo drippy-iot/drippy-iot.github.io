@@ -1,12 +1,21 @@
 <script lang="ts">
+    import { fade } from 'svelte/transition';
     import Drippy from '../../assets/drippy.svelte';
 
-    export let active: boolean;
+    let active = false;
 </script>
 
-<button class:active on:click>
-    <Drippy />
-</button>
+<div class="relative z-50 box-content h-14 w-14 rounded-full bg-white p-1.5">
+    <button class:active on:click={() => (active = !active)}>
+        <Drippy />
+    </button>
+</div>
+{#if active}
+    <div
+        class="fixed inset-0 bg-black bg-opacity-70"
+        transition:fade={{ duration: 150 }}
+    />
+{/if}
 
 <style>
     button {
