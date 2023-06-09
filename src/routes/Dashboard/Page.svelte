@@ -15,8 +15,25 @@
 
     import { OPTIONS } from './constants.ts';
     import Display from '../../components/Chart/Display.svelte';
+    import Droplet from '../../assets/droplet.svelte';
+    import DropletCross from '../../assets/droplet-cross.svelte';
 
     let value: Option = OPTIONS[0] || '';
+
+    let VALVE_ACTIONS = [
+        {
+            icon: Droplet,
+            action: () => {
+                console.log('Droplet');
+            },
+        },
+        {
+            icon: DropletCross,
+            action: () => {
+                console.log('DropletCross');
+            },
+        },
+    ];
 </script>
 
 <Layout>
@@ -49,7 +66,7 @@
         <TabItem><MdSettings /></TabItem>
     </TabGroup>
     <div class="absolute bottom-4 left-0 right-0 mx-auto h-fit w-fit">
-        <Valve />
+        <Valve actions={VALVE_ACTIONS} />
     </div>
     <Background />
 </Layout>

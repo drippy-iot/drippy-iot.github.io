@@ -2,14 +2,31 @@
     import { fade } from 'svelte/transition';
     import Drippy from '../../assets/drippy.svelte';
     import Child from './Child.svelte';
+    import type { ChildType } from './types.ts';
+    import { assert } from '../../assert.ts';
 
     let active = false;
+
+    export let actions: ChildType[];
+    $: arc = 180 / (actions.length + 1);
+
+    function getRotation(i: number) {
+        return (i + 1) * arc - 90;
+    }
+
+    assert(Array.isArray(actions));
 </script>
 
 <div class="relative isolate z-50">
-    <div class="child absolute inset-0 z-[-1] m-auto h-fit w-fit" class:active>
-        <Child />
-    </div>
+    {#each Object.entries(actions) as [i, { icon, action }]}
+        <div
+            class="child absolute inset-0 z-[-1] m-auto h-fit w-fit"
+            style="--rotation: {getRotation(parseInt(i))}deg"
+            class:active
+        >
+            <Child {icon} on:click={action} />
+        </div>
+    {/each}
     <button
         class="box-content h-14 w-14 rounded-full bg-white p-1.5"
         class:active
@@ -46,9 +63,17 @@
         transition: transform var(--transition-duration) ease-out;
     }
     .child.active {
-        --distance: theme(spacing.16);
-        rotate: 0;
-        translate: 0 calc(-1 * var(--distance));
+        --distance: calc(-1 * theme(spacing.16));
+        transform: rotate(var(--rotation)) translateY(var(--distance));
+    }
+    .child {
+        /* transform: rotate(var(--rotation)) translateY(0); */
+        transform: rotate(0) translateY(0);
         transform-origin: center;
+        transition: transform 150ms linear;
+    }
+
+    .child > :global(*) {
+        rotate: calc(-1 * var(--rotation));
     }
 </style>
