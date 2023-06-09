@@ -74,3 +74,34 @@ export async function getUserMetrics(
         { passive: true }
     );
 }
+
+export async function getSystemMetrics(
+    listener: Pick<MetricsListener, 'onFlows'>,
+    since: Date,
+    secs?: number
+) {
+    const params = new URLSearchParams({ start: since.valueOf().toString() });
+    if (typeof secs !== 'undefined') params.set('secs', secs.toString());
+
+    const src = new EventSource(`/api/metrics/system?${params}`, {
+        withCredentials: true,
+    });
+
+    // Attempt to connect to the server
+    await new Promise((resolve, reject) => {
+        src.addEventListener('error', reject, { once: true, passive: true });
+        src.addEventListener('open', resolve, { once: true, passive: true });
+    });
+
+    // NOTE: From this point forward, we silently consume the errors.
+    src.addEventListener('error', console.error, { passive: true });
+    src.addEventListener(
+        'flow',
+        ({ data }) => {
+            assert(typeof data === 'string');
+            const json = JSON.parse(data);
+            listener.onFlows(FlowSchema.array().parse(json));
+        },
+        { passive: true }
+    );
+}
