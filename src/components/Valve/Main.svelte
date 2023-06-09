@@ -1,5 +1,5 @@
 <script lang="ts">
-    import Drippy from '../assets/drippy.svelte';
+    import Drippy from '../../assets/drippy.svelte';
 
     export let active: boolean;
 </script>
@@ -23,20 +23,6 @@
     :global(button.active #Gear) {
         transform: rotate(0deg);
         transition: transform var(--transition-duration) ease-in;
-    }
-
-    :global(button.active #Droplet) {
-        opacity: 1;
-        transform: translateY(0);
-        transition: transform var(--transition-duration) ease-in,
-            opacity var(--transition-duration) ease-in;
-    }
-
-    :global(button #Droplet) {
-        opacity: 0;
-        transform: translateY(-15%);
-        transition: transform var(--transition-duration) ease-in,
-            opacity var(--transition-duration) ease-out;
     }
 
     :global(button #Gear) {

@@ -10,7 +10,7 @@
     import TabItem from '../../components/Tab/TabItem.svelte';
     import Text from '../../components/Text.svelte';
     import Background from './Background.svelte';
-    import Valve from '../../components/Valve.svelte';
+    import Valve from '../../components/Valve/Main.svelte';
     import type { Option } from '../../components/Select/types.ts';
 
     import { OPTIONS } from './constants.ts';
