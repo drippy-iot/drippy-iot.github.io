@@ -17,6 +17,7 @@
     assert(Array.isArray(actions));
 </script>
 
+<!-- svelte-ignore a11y-click-events-have-key-events -->
 <div class="relative isolate z-50" on:click={() => (active = !active)}>
     {#each Object.entries(actions) as [i, { icon, action }]}
         <div
