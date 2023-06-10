@@ -17,7 +17,7 @@
     assert(Array.isArray(actions));
 </script>
 
-<div class="relative isolate z-50">
+<div class="relative isolate z-50" on:click={() => (active = !active)}>
     {#each Object.entries(actions) as [i, { icon, action }]}
         <div
             class="child absolute inset-0 z-[-1] m-auto h-fit w-fit"
@@ -30,7 +30,6 @@
     <button
         class="box-content h-14 w-14 rounded-full bg-white p-1.5"
         class:active
-        on:click={() => (active = !active)}
     >
         <Drippy />
     </button>
