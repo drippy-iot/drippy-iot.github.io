@@ -77,15 +77,6 @@
                 ttl: 3600000,
             },
             zoom: {
-                zoom: {
-                    wheel: {
-                        enabled: true,
-                    },
-                    pinch: {
-                        enabled: true,
-                    },
-                    mode: 'x',
-                },
                 pan: {
                     enabled: true,
                     mode: 'x',
