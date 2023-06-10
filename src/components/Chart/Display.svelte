@@ -17,6 +17,10 @@
 
     let canvas: HTMLCanvasElement;
 
+    // Granularity is in the form of seconds. If left undefined,
+    // backend uses the predetermined quantum as the selected granularity
+    export let granularity: number | undefined;
+
     // Chart Configuration Data
     const data: ChartConfiguration['data'] = {
         datasets: [
