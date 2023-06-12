@@ -15,8 +15,22 @@
     import Display from '../../components/Chart/Display.svelte';
     import Droplet from '../../assets/droplet.svelte';
     import DropletCross from '../../assets/droplet-cross.svelte';
+    import { GRAN_OPTS } from './constants';
+    import { Granularity } from '../../components/Chart/types';
+    import { assert } from '../../assert';
 
     let mac: string = 'ad:ad:ad:ad';
+
+    // Flatten objects to array of labels.
+    let GRANULARITY_OPTIONS = GRAN_OPTS.map(option => option.label);
+
+    function getGranularityWithValue(granularity: Granularity) {
+        const match = GRAN_OPTS.filter(opt => opt.value == granularity);
+        assert(match.length == 1);
+        return match[0];
+    }
+
+    let value = getGranularityWithValue(Granularity.REALTIME).label;
 
     let VALVE_ACTIONS = [
         {
@@ -42,6 +56,11 @@
         </div>
         <div class="relative -left-4 max-h-[30cqh] w-[100cqw]">
             <Display />
+            <Select
+                name="granularity"
+                bind:value
+                options={GRANULARITY_OPTIONS}
+            />
         </div>
         <div class="flex justify-between">
             <Select name="mac" bind:value={mac} options={[]} disabled />
