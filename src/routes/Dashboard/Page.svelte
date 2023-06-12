@@ -24,13 +24,21 @@
     // Flatten objects to array of labels.
     let GRANULARITY_OPTIONS = GRAN_OPTS.map(option => option.label);
 
-    function getGranularityWithValue(granularity: Granularity) {
-        const match = GRAN_OPTS.filter(opt => opt.value == granularity);
+    $: console.log(GRAN_OPTS);
+    $: console.log(granularity);
+
+    function getGranularity(
+        granularity: Granularity,
+        key: 'label' | 'value' = 'value'
+    ) {
+        const match = GRAN_OPTS.filter(opt => opt[key] == granularity);
         assert(match.length == 1);
         return match[0];
     }
 
-    let value = getGranularityWithValue(Granularity.REALTIME).label;
+    let value = 'Realtime';
+
+    $: granularity = getGranularity(value, 'label');
 
     let VALVE_ACTIONS = [
         {
@@ -55,7 +63,7 @@
             <h1>Some-Dood</h1>
         </div>
         <div class="relative -left-4 max-h-[30cqh] w-[100cqw]">
-            <Display />
+            <Display granularity={granularity.value} />
             <Select
                 name="granularity"
                 bind:value

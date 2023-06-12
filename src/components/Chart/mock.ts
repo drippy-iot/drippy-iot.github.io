@@ -18,7 +18,8 @@ function mockUpdate() {
     });
 }
 
-export function createMock(granularity: Granularity | undefined) {
+export function createMock(granularity: Granularity) {
+    if (granularity == 0) granularity = 1;
     console.log('Creating Interval of granularity', granularity);
-    setInterval(mockUpdate, granularity ?? 1000);
+    return setInterval(mockUpdate, granularity * 1000);
 }
