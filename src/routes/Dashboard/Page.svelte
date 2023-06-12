@@ -73,7 +73,9 @@
             </span>
         </div>
         <div class="flex justify-between">
-            <Select name="mac" bind:value={mac} options={[]} disabled />
+            <Select name="mac" bind:value={mac} options={[]} disabled
+                >Device Mac:
+            </Select>
             <Text --text-bg={COLORS.green[500]}>Connected</Text>
         </div>
         <h2 class="block">System Log:</h2>
