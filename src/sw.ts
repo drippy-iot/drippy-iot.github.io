@@ -14,9 +14,7 @@ async function installWorker() {
 }
 
 function* deleteAll(keys: Iterable<string>) {
-    for (const key of keys)
-        if (key !== version)
-            yield caches.delete(key);
+    for (const key of keys) if (key !== version) yield caches.delete(key);
 }
 
 async function activateWorker() {
@@ -31,17 +29,29 @@ async function interceptFetch(req: Request) {
     return res ?? fetch(req);
 }
 
-self.addEventListener('install', evt => {
-    assert(evt instanceof ExtendableEvent);
-    evt.waitUntil(installWorker());
-}, { once: true, passive: true });
+self.addEventListener(
+    'install',
+    evt => {
+        assert(evt instanceof ExtendableEvent);
+        evt.waitUntil(installWorker());
+    },
+    { once: true, passive: true }
+);
 
-self.addEventListener('activate', evt => {
-    assert(evt instanceof ExtendableEvent);
-    evt.waitUntil(activateWorker());
-}, { once: true, passive: true });
+self.addEventListener(
+    'activate',
+    evt => {
+        assert(evt instanceof ExtendableEvent);
+        evt.waitUntil(activateWorker());
+    },
+    { once: true, passive: true }
+);
 
-self.addEventListener('fetch', evt => {
-    assert(evt instanceof FetchEvent);
-    evt.respondWith(interceptFetch(evt.request));
-}, { passive: true });
+self.addEventListener(
+    'fetch',
+    evt => {
+        assert(evt instanceof FetchEvent);
+        evt.respondWith(interceptFetch(evt.request));
+    },
+    { passive: true }
+);
