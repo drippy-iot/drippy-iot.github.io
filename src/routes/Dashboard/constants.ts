@@ -52,7 +52,7 @@ export const LOGS = [
     },
 ];
 
-export const GRAN_OPTS: Option[] = [
+export const GRAN_OPTS = [
     {
         label: '1 hour',
         value: Granularity.HR_1,
