@@ -9,6 +9,7 @@
     import 'chartjs-adapter-date-fns';
 
     import { flow } from './mock.ts';
+    import type { Granularity } from './types.ts';
 
     Chart.register(ChartStreaming);
     Chart.register(ChartZoom);
@@ -19,7 +20,7 @@
 
     // Granularity is in the form of seconds. If left undefined,
     // backend uses the predetermined quantum as the selected granularity
-    export let granularity: number | undefined;
+    export let granularity: Granularity | undefined;
 
     // Chart Configuration Data
     const data: ChartConfiguration['data'] = {
