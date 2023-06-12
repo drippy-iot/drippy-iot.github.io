@@ -1,7 +1,6 @@
 <script lang="ts">
     import { format } from 'date-fns';
-    import type { UserMessage } from '../models/user.ts';
-    export let item: UserMessage;
+    export let item: unknown;
 
     const LABELS = {
         open: 'Bypass: Valve set to open',
