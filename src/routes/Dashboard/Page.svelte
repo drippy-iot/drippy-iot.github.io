@@ -13,12 +13,11 @@
     import Valve from '../../components/Valve/Main.svelte';
     import type { Option } from '../../components/Select/types.ts';
 
-    import { OPTIONS } from './constants.ts';
     import Display from '../../components/Chart/Display.svelte';
     import Droplet from '../../assets/droplet.svelte';
     import DropletCross from '../../assets/droplet-cross.svelte';
 
-    let value: Option = OPTIONS[0] || '';
+    let mac: string = 'ad:ad:ad:ad';
 
     let VALVE_ACTIONS = [
         {
@@ -46,9 +45,7 @@
             <Display />
         </div>
         <div class="flex justify-between">
-            <Select name="mac" options={OPTIONS} bind:value disabled>
-                Device Mac:
-            </Select>
+            <Select name="mac" bind:value={mac} options={[]} disabled />
             <Text --text-bg={COLORS.green[500]}>Connected</Text>
         </div>
         <h2 class="block">System Log:</h2>
