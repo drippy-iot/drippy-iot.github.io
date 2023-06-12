@@ -64,11 +64,13 @@
         </div>
         <div class="relative -left-4 max-h-[30cqh] w-[100cqw]">
             <Display granularity={granularity.value} />
-            <Select
-                name="granularity"
-                bind:value
-                options={GRANULARITY_OPTIONS}
-            />
+            <span class="absolute bottom-full right-4">
+                <Select
+                    name="granularity"
+                    bind:value
+                    options={GRANULARITY_OPTIONS}
+                />
+            </span>
         </div>
         <div class="flex justify-between">
             <Select name="mac" bind:value={mac} options={[]} disabled />
