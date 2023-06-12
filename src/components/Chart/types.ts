@@ -1,4 +1,4 @@
-export enum Granularity {
+export const enum Granularity {
     HR_1 = 3600,
     MIN_30 = 1800,
     MIN_10 = 600,
