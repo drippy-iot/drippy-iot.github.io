@@ -11,7 +11,6 @@
     import Text from '../../components/Text.svelte';
     import Background from './Background.svelte';
     import Valve from '../../components/Valve/Main.svelte';
-    import type { Option } from '../../components/Select/types.ts';
 
     import Display from '../../components/Chart/Display.svelte';
     import Droplet from '../../assets/droplet.svelte';
