@@ -88,6 +88,6 @@ export const GRAN_OPTS: Option[] = [
     // Default
     {
         label: 'Realtime',
-        value: 0,
+        value: Granularity.REALTIME,
     },
 ];

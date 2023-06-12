@@ -6,4 +6,5 @@ export const enum Granularity {
     MIN_1 = 60,
     SEC_30 = 30,
     SEC_10 = 10,
+    REALTIME = 0,
 }
