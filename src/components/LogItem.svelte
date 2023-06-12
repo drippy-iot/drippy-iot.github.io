@@ -1,7 +1,6 @@
 <script lang="ts">
     import { format } from 'date-fns';
     import type { UserMessage } from '../models/user.ts';
-    import Waves from './Waves.svelte';
     export let item: UserMessage;
 
     const LABELS = {
