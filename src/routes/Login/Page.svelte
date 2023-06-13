@@ -70,7 +70,7 @@
         @apply text-center leading-loose;
     }
 
-    input[type='submit'] {
+    input[type="submit"] {
         @apply w-full p-4;
         @apply bg-yellow-500;
         @apply text-center text-white;
