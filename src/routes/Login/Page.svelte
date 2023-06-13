@@ -28,8 +28,8 @@
                 await session.load();
                 replace('/dash');
             } else return alert('MAC has not yet been registered.');
-        } catch (err){
-            alert(err)
+        } catch (err) {
+            alert(err);
         }
     }
 </script>
@@ -72,13 +72,13 @@
         @apply text-center leading-loose;
     }
 
-    input[type="submit"] {
+    input[type='submit'] {
         @apply w-full p-4;
         @apply bg-yellow-500;
         @apply text-center text-white;
     }
 
-    input[type="submit"].user {
+    input[type='submit'].user {
         @apply bg-blue-500;
     }
 

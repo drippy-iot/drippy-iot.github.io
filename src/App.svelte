@@ -5,12 +5,11 @@
     import Login from './routes/Login/Page.svelte';
 
     import { register } from './register.ts';
-    
+
     const routes = {
         '/': Login,
         '/dash': Dashboard,
     };
-
 </script>
 
 <main>

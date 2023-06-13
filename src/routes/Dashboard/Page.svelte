@@ -21,10 +21,9 @@
     let mac = 'ad:ad:ad:ad';
     // Redirect to Login on no session
 
-    const sessionReady = session.reload?.()
-        .then((session) => {
-            if (session === null) replace('/')
-        });
+    const sessionReady = session.reload?.().then(session => {
+        if (session === null) replace('/');
+    });
 
     // Flatten objects to array of labels.
     let GRANULARITY_OPTIONS = GRAN_OPTS.map(option => option.label);
@@ -59,7 +58,7 @@
 </script>
 
 {#await sessionReady}
-    <p> Loading session. </p>
+    <p>Loading session.</p>
 {:then}
     <Layout>
         <div class="wrapper flex flex-col gap-4 p-4 text-xs">
