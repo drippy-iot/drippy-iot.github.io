@@ -25,7 +25,7 @@
 
         try {
             if (status) {
-                await session.reload?.();
+                await session.load();
                 replace('/dash');
             } else return alert('MAC has not yet been registered.');
         } catch (err){
