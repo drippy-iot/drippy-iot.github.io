@@ -119,7 +119,8 @@
             </div>
         </div>
         <div class="fixed bottom-0 flex h-12 w-full bg-slate-900">
-            <button on:click={() => handleLogout()}
+            <button
+                on:click={() => handleLogout()}
                 class="absolute bottom-0 right-4 top-0 my-auto h-5 w-5 text-white"
             >
                 <FaSignOutAlt />
