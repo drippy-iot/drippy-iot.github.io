@@ -73,6 +73,8 @@ export async function getUserMetrics(
         },
         { passive: true }
     );
+
+    return src.close.bind(src);
 }
 
 export async function getSystemMetrics(
@@ -104,4 +106,6 @@ export async function getSystemMetrics(
         },
         { passive: true }
     );
+
+    return src.close.bind(src);
 }
