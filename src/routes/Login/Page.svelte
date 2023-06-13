@@ -32,6 +32,8 @@
             alert(err);
         }
     }
+
+    $: if ($session !== null) replace('/dash');
 </script>
 
 <Layout>
