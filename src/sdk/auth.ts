@@ -59,7 +59,10 @@ export async function login(mac: ArrayBuffer): Promise<boolean> {
  * If the session does not exist (for some reason?), we return `null`.
  */
 export async function logout(): Promise<ArrayBuffer | null> {
-    const res = await fetch('/auth/session', { method: 'DELETE' });
+    const res = await fetch('/auth/session', {
+        method: 'DELETE',
+        credentials: 'include',
+    });
     switch (res.status) {
         case StatusCodes.OK:
             return res.arrayBuffer();
