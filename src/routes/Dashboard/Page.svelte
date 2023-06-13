@@ -19,7 +19,7 @@
     import { Granularity } from '../../components/Chart/types';
     import { assert } from '../../assert';
 
-    let mac: string = 'ad:ad:ad:ad';
+    let mac = 'ad:ad:ad:ad';
 
     // Flatten objects to array of labels.
     let GRANULARITY_OPTIONS = GRAN_OPTS.map(option => option.label);
