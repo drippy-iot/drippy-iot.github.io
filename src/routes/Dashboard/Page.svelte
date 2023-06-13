@@ -18,8 +18,14 @@
     import { GRAN_OPTS } from './constants';
     import { Granularity } from '../../components/Chart/types';
     import { assert } from '../../assert';
+    import { session } from '../../stores/session';
+    import { replace } from 'svelte-spa-router';
 
     let mac = 'ad:ad:ad:ad';
+    // Redirect to Login on no session
+    session.subscribe(sesh => {
+        if (sesh === null) replace('/');
+    });
 
     // Flatten objects to array of labels.
     let GRANULARITY_OPTIONS = GRAN_OPTS.map(option => option.label);

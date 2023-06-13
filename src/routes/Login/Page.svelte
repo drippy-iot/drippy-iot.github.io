@@ -8,10 +8,14 @@
     import Drippy from '../../assets/drippy-animated.svelte';
     import Background from './Background.svelte';
     import { assert } from '../../assert.ts';
-    import { getSession, login } from '../../sdk/auth';
-    import { location, replace } from 'svelte-spa-router';
-    import { onMount } from 'svelte';
+    import { login } from '../../sdk/auth';
+    import { replace } from 'svelte-spa-router';
+    import { session } from '../../stores/session.ts';
     let user = true;
+
+    session.subscribe(sesh => {
+        if (sesh !== null) replace('/dash');
+    });
 
     async function handleSubmit(this: HTMLFormElement) {
         const formData = new FormData(this);
@@ -22,16 +26,10 @@
         const { buffer } = new Uint8Array(parsed);
 
         const status = await login(buffer);
-        console.log(status);
         if (!status) return alert('MAC has not yet been registered.');
 
-        replace('/dash');
+        await session.reload?.();
     }
-
-    onMount(async () => {
-        const session = await getSession();
-        if (session != null) replace('/dash');
-    });
 </script>
 
 <Layout>
