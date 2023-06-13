@@ -7,7 +7,20 @@
     import TabGroup from '../../components/Tab/TabGroup.svelte';
     import Drippy from '../../assets/drippy-animated.svelte';
     import Background from './Background.svelte';
+    import { assert } from '../../assert';
+    import { login } from '../../sdk/auth';
     let user = true;
+
+    function handleSubmit(this: HTMLFormElement) {
+        const formData = new FormData(this);
+        const mac = formData.get('mac');
+        assert(typeof mac != undefined);
+        const split = mac.split(':');
+        const parsed = split.map(hexstr => parseInt(hexstr, 16));
+        const { buffer } = new Uint8Array(parsed);
+
+        login(buffer);
+    }
 </script>
 
 <Layout>
@@ -16,9 +29,15 @@
             <Drippy />
             <h1>Drippy</h1>
         </div>
-        <form on:submit|preventDefault>
-            <input type="text" />
-            <button class:user>Login</button>
+        <form on:submit|self|preventDefault|stopPropagation={handleSubmit}>
+            <input
+                type="text"
+                name="mac"
+                placeholder="aa:bb:cc:dd:ee:ff"
+                required
+                pattern={`[a-fA-F0-9]{2}:[a-fA-F0-9]{2}:[a-fA-F0-9]{2}:[a-fA-F0-9]{2}:[a-fA-F0-9]{2}:[a-fA-F0-9]{2}`}
+            />
+            <input type="submit" class:user value="Login" />
         </form>
     </main>
     <Background />
@@ -42,13 +61,13 @@
         @apply text-center leading-loose;
     }
 
-    button {
+    input[type='submit'] {
         @apply w-full p-4;
         @apply bg-yellow-500;
         @apply text-center text-white;
     }
 
-    button.user {
+    input[type='submit'].user {
         @apply bg-blue-500;
     }
 
