@@ -8,7 +8,9 @@
 
     import 'chartjs-adapter-date-fns';
 
-    import { flow } from './mock.ts';
+    import { flow, createMock } from './mock.ts';
+    import { Granularity } from './types.ts';
+    import { assert } from '../../assert.ts';
 
     Chart.register(ChartStreaming);
     Chart.register(ChartZoom);
@@ -16,6 +18,12 @@
     Chart.defaults.font.family = 'Poppins, Arial, sans-serif';
 
     let canvas: HTMLCanvasElement;
+
+    let chart: Chart;
+
+    // Granularity is in the form of seconds. If left undefined,
+    // backend uses the predetermined quantum as the selected granularity
+    export let granularity: Granularity = Granularity.REALTIME;
 
     // Chart Configuration Data
     const data: ChartConfiguration['data'] = {
@@ -73,15 +81,6 @@
                 ttl: 3600000,
             },
             zoom: {
-                zoom: {
-                    wheel: {
-                        enabled: true,
-                    },
-                    pinch: {
-                        enabled: true,
-                    },
-                    mode: 'x',
-                },
                 pan: {
                     enabled: true,
                     mode: 'x',
@@ -117,8 +116,20 @@
 
     onMount(() => {
         // Attach chart to HTMLCanvasElement.
-        new Chart(canvas, { type: 'line', data, options });
+        chart = new Chart(canvas, { type: 'line', data, options });
     });
+    let interval: number;
+
+    $: {
+        clearInterval(interval);
+        if (chart) {
+            const [first, ...rest] = chart.data.datasets;
+            assert(typeof first !== 'undefined');
+            first.data = [];
+        }
+        chart?.update('none');
+        interval = createMock(granularity);
+    }
 </script>
 
 <canvas bind:this={canvas} />

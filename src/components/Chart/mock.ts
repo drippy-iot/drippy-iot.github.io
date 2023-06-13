@@ -1,4 +1,5 @@
 import { writable } from 'svelte/store';
+import { Granularity } from './types';
 
 interface Flow {
     ts: Date;
@@ -17,4 +18,8 @@ function mockUpdate() {
     });
 }
 
-setInterval(mockUpdate, 1000);
+export function createMock(granularity: Granularity) {
+    if (granularity == 0) granularity = 1;
+    console.log('Creating Interval of granularity', granularity);
+    return setInterval(mockUpdate, granularity * 1000);
+}

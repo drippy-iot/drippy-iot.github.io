@@ -11,14 +11,31 @@
     import Text from '../../components/Text.svelte';
     import Background from './Background.svelte';
     import Valve from '../../components/Valve/Main.svelte';
-    import type { Option } from '../../components/Select/types.ts';
 
-    import { OPTIONS } from './constants.ts';
     import Display from '../../components/Chart/Display.svelte';
     import Droplet from '../../assets/droplet.svelte';
     import DropletCross from '../../assets/droplet-cross.svelte';
+    import { GRAN_OPTS } from './constants';
+    import { Granularity } from '../../components/Chart/types';
+    import { assert } from '../../assert';
 
-    let value: Option = OPTIONS[0] || '';
+    let mac = 'ad:ad:ad:ad';
+
+    // Flatten objects to array of labels.
+    let GRANULARITY_OPTIONS = GRAN_OPTS.map(option => option.label);
+
+    function getGranularity(
+        granularity: Granularity,
+        key: 'label' | 'value' = 'value'
+    ) {
+        const match = GRAN_OPTS.filter(opt => opt[key] == granularity);
+        assert(match.length == 1);
+        return match[0];
+    }
+
+    let value = 'Realtime';
+
+    $: granularity = getGranularity(value, 'label');
 
     let VALVE_ACTIONS = [
         {
@@ -43,11 +60,18 @@
             <h1>Some-Dood</h1>
         </div>
         <div class="relative -left-4 max-h-[30cqh] w-[100cqw]">
-            <Display />
+            <Display granularity={granularity.value} />
+            <span class="absolute bottom-full right-4">
+                <Select
+                    name="granularity"
+                    bind:value
+                    options={GRANULARITY_OPTIONS}
+                />
+            </span>
         </div>
         <div class="flex justify-between">
-            <Select name="mac" options={OPTIONS} bind:value disabled>
-                Device Mac:
+            <Select name="mac" bind:value={mac} options={[]} disabled
+                >Device Mac:
             </Select>
             <Text --text-bg={COLORS.green[500]}>Connected</Text>
         </div>
