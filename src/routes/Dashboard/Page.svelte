@@ -17,6 +17,9 @@
     import { assert } from '../../assert';
     import { session } from '../../stores/session';
     import { replace } from 'svelte-spa-router';
+    import { getUserMetrics } from '../../sdk/metrics';
+    import { metricsListener } from './listener';
+    import { startOfDay } from 'date-fns';
 
     let mac = 'ad:ad:ad:ad';
     // Redirect to Login on no session
@@ -55,6 +58,14 @@
             },
         },
     ];
+
+    $: getUserMetrics(
+        metricsListener,
+        startOfDay(new Date()),
+        granularity?.value === Granularity.REALTIME
+            ? undefined
+            : granularity?.value
+    ).catch(console.error);
 </script>
 
 {#await sessionReady}

@@ -8,9 +8,10 @@
 
     import 'chartjs-adapter-date-fns';
 
-    import { flow, createMock } from './mock.ts';
+    import { createMock } from './mock.ts';
     import { Granularity } from './types.ts';
     import { assert } from '../../assert.ts';
+    import { newFlow } from '../../stores/flow.ts';
 
     Chart.register(ChartStreaming);
     Chart.register(ChartZoom);
@@ -105,11 +106,11 @@
     $: {
         // Update chart upon retrieving data and clear buffer.
         const chart = Chart.getChart(canvas);
-        const points = $flow.splice(0).map(({ ts, flow }) => ({
-            x: ts.getTime(),
+        const points = $newFlow.splice(0).map(({ end, flow }) => ({
+            x: end.getTime(),
             y: flow,
         }));
-        $flow = $flow; // notify mutation
+        $newFlow = $newFlow;
         chart?.data.datasets[0]?.data.push(...points);
         chart?.update('quiet');
     }
@@ -125,17 +126,6 @@
         clearInterval(interval);
     });
     let interval: number;
-
-    $: {
-        clearInterval(interval);
-        if (chart) {
-            const [first, ...rest] = chart.data.datasets;
-            assert(typeof first !== 'undefined');
-            first.data = [];
-        }
-        chart?.update('none');
-        interval = createMock(granularity);
-    }
 </script>
 
 <canvas bind:this={canvas} />
