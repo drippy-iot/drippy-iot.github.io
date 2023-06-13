@@ -1,13 +1,10 @@
 <script lang="ts">
     import COLORS from 'tailwindcss/colors';
-    import MdDashboard from 'svelte-icons/md/MdDashboard.svelte';
-    import MdSettings from 'svelte-icons/md/MdSettings.svelte';
+    import FaSignOutAlt from 'svelte-icons/fa/FaSignOutAlt.svelte';
 
     import Layout from '../../components/Layout.svelte';
     import LogItem from '../../components/LogItem.svelte';
     import Select from '../../components/Select/Select.svelte';
-    import TabGroup from '../../components/Tab/TabGroup.svelte';
-    import TabItem from '../../components/Tab/TabItem.svelte';
     import Text from '../../components/Text.svelte';
     import Background from './Background.svelte';
     import Valve from '../../components/Valve/Main.svelte';
@@ -91,10 +88,11 @@
             />
         </div>
     </div>
-    <TabGroup>
-        <TabItem active><MdDashboard /></TabItem>
-        <TabItem><MdSettings /></TabItem>
-    </TabGroup>
+    <div class="fixed bottom-0 flex h-12 w-full bg-slate-900">
+        <button class="absolute bottom-0 right-4 top-0 my-auto text-white">
+            <FaSignOutAlt />
+        </button>
+    </div>
     <div class="absolute bottom-4 left-0 right-0 mx-auto h-fit w-fit">
         <Valve actions={VALVE_ACTIONS} />
     </div>
