@@ -1,6 +1,6 @@
 <script lang="ts">
     import { format } from 'date-fns';
-    export let ty: "close" | "bypass" | "open" | "flow";
+    export let ty: 'close' | 'bypass' | 'open' | 'flow';
     export let ts: Date;
 
     const LABELS = {
