@@ -1,9 +1,9 @@
 <script lang="ts">
     import type { ChartConfiguration } from 'chart.js';
     import Chart from 'chart.js/auto';
-    import ChartStreaming from 'chartjs-plugin-streaming';
+    import ChartStreaming from '@robloche/chartjs-plugin-streaming';
     import ChartZoom from 'chartjs-plugin-zoom';
-    import { onMount } from 'svelte';
+    import { onDestroy, onMount } from 'svelte';
     import colors from 'tailwindcss/colors';
 
     import 'chartjs-adapter-date-fns';
@@ -117,6 +117,12 @@
     onMount(() => {
         // Attach chart to HTMLCanvasElement.
         chart = new Chart(canvas, { type: 'line', data, options });
+    });
+
+    onDestroy(() => {
+        chart.notifyPlugins('destroy');
+        chart.destroy();
+        clearInterval(interval);
     });
     let interval: number;
 

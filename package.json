@@ -65,7 +65,6 @@
         "@parcel/service-worker": "^2.8.3",
         "chart.js": "^4.3.0",
         "chartjs-adapter-date-fns": "^3.0.0",
-        "chartjs-plugin-streaming": "^2.0.0",
         "chartjs-plugin-zoom": "^2.0.1",
         "date-fns": "^2.30.0",
         "http-status-codes": "^2.2.0",
