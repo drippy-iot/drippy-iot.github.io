@@ -24,9 +24,6 @@
     // Flatten objects to array of labels.
     let GRANULARITY_OPTIONS = GRAN_OPTS.map(option => option.label);
 
-    $: console.log(GRAN_OPTS);
-    $: console.log(granularity);
-
     function getGranularity(
         granularity: Granularity,
         key: 'label' | 'value' = 'value'
