@@ -18,7 +18,7 @@
     import { session } from '../../stores/session';
     import { replace } from 'svelte-spa-router';
     import { getUserMetrics } from '../../sdk/metrics';
-    import { metricsListener } from './listener';
+    import { userMetricsListener } from '../../stores/usermetrics';
     import { startOfDay } from 'date-fns';
 
     let mac = 'ad:ad:ad:ad';
@@ -60,7 +60,7 @@
     ];
 
     $: getUserMetrics(
-        metricsListener,
+        userMetricsListener,
         startOfDay(new Date()),
         granularity?.value === Granularity.REALTIME
             ? undefined
