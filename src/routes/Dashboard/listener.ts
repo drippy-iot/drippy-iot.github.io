@@ -3,7 +3,10 @@ import { MetricsListener } from '../../sdk/metrics';
 import { newFlow } from '../../stores/flow';
 
 function onFlows(flow: Flow[]) {
-    newFlow.update(old => old.push(...flow));
+    newFlow.update(old => {
+        old.push(...flow);
+        return old;
+    });
 }
 
 function onOpen(ts: Open) { }
