@@ -1,6 +1,7 @@
 <script lang="ts">
     import { format } from 'date-fns';
-    export let item: unknown;
+    export let ty: "close" | "bypass" | "open" | "flow";
+    export let ts: Date;
 
     const LABELS = {
         open: 'Bypass: Valve set to open',
@@ -12,10 +13,10 @@
 
 <span
     class="relative grid shrink-0 overflow-hidden rounded-2xl p-4 text-base"
-    data-ty={item.ty}
-    data-ts={format(item.ts, 'MMM dd h:mm:ss a')}
+    data-ty={ty}
+    data-ts={format(ts, 'MMM dd h:mm:ss a')}
 >
-    {LABELS[item.ty]}
+    {LABELS[ty]}
 </span>
 
 <style>
