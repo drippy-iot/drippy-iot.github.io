@@ -76,7 +76,7 @@
         @apply text-center text-white;
     }
 
-    input[type='submit'].user {
+    input[type="submit"].user {
         @apply bg-blue-500;
     }
 
