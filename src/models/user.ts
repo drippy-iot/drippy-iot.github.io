@@ -3,6 +3,7 @@ import { z } from 'zod';
 export const FlowSchema = z.object({
     end: z.coerce.date(),
     flow: z.number().nonnegative(),
+    leak: z.boolean(),
 });
 export type Flow = z.infer<typeof FlowSchema>;
 
