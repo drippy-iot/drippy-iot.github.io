@@ -22,7 +22,7 @@ export async function getUserMetrics(
     since: Date,
     secs?: number
 ) {
-    const params = new URLSearchParams({ start: since.valueOf().toString() });
+    const params = new URLSearchParams({ since: since.valueOf().toString() });
     if (typeof secs !== 'undefined') params.set('secs', secs.toString());
 
     const src = new EventSource(`/api/metrics/user?${params}`, {
@@ -80,7 +80,7 @@ export async function getSystemMetrics(
     since: Date,
     secs?: number
 ) {
-    const params = new URLSearchParams({ start: since.valueOf().toString() });
+    const params = new URLSearchParams({ since: since.valueOf().toString() });
     if (typeof secs !== 'undefined') params.set('secs', secs.toString());
 
     const src = new EventSource(`/api/metrics/system?${params}`, {
