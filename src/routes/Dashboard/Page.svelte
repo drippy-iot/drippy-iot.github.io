@@ -20,9 +20,11 @@
 
     let mac = 'ad:ad:ad:ad';
     // Redirect to Login on no session
-    session.subscribe(sesh => {
-        if (sesh === null) replace('/');
-    });
+
+    const sessionReady = session.load().catch(err => {
+        alert(err);
+        throw err;
+    })
 
     // Flatten objects to array of labels.
     let GRANULARITY_OPTIONS = GRAN_OPTS.map(option => option.label);
@@ -56,50 +58,54 @@
     ];
 </script>
 
-<Layout>
-    <div class="wrapper flex flex-col gap-4 p-4 text-xs">
-        <div>
-            <h2>Welcome</h2>
-            <h1>Some-Dood</h1>
-        </div>
-        <div class="relative -left-4 max-h-[30cqh] w-[100cqw]">
-            <Display granularity={granularity.value} />
-            <span class="absolute bottom-full right-4">
-                <Select
-                    name="granularity"
-                    bind:value
-                    options={GRANULARITY_OPTIONS}
+{#await session.load()}
+    <Layout>
+        <div class="wrapper flex flex-col gap-4 p-4 text-xs">
+            <div>
+                <h2>Welcome</h2>
+                <h1>Some-Dood</h1>
+            </div>
+            <div class="relative -left-4 max-h-[30cqh] w-[100cqw]">
+                <Display granularity={granularity.value} />
+                <span class="absolute bottom-full right-4">
+                    <Select
+                        name="granularity"
+                        bind:value
+                        options={GRANULARITY_OPTIONS}
+                    />
+                </span>
+            </div>
+            <div class="flex justify-between">
+                <Select name="mac" bind:value={mac} options={[]} disabled
+                    >Device Mac:
+                </Select>
+                <Text --text-bg={COLORS.green[500]}>Connected</Text>
+            </div>
+            <h2 class="block">System Log:</h2>
+            <div class="flex flex-1 flex-col gap-2 overflow-y-auto">
+                <LogItem item={{ ty: 'bypass', ts: new Date() }} />
+                <LogItem item={{ ty: 'open', ts: new Date() }} />
+                <LogItem item={{ ty: 'close', ts: new Date() }} />
+                <LogItem
+                    item={{ ty: 'flow', flow: 1, leak: true, ts: new Date() }}
                 />
-            </span>
+            </div>
         </div>
-        <div class="flex justify-between">
-            <Select name="mac" bind:value={mac} options={[]} disabled
-                >Device Mac:
-            </Select>
-            <Text --text-bg={COLORS.green[500]}>Connected</Text>
+        <div class="fixed bottom-0 flex h-12 w-full bg-slate-900">
+            <button
+                class="absolute bottom-0 right-4 top-0 my-auto h-5 w-5 text-white"
+            >
+                <FaSignOutAlt />
+            </button>
         </div>
-        <h2 class="block">System Log:</h2>
-        <div class="flex flex-1 flex-col gap-2 overflow-y-auto">
-            <LogItem item={{ ty: 'bypass', ts: new Date() }} />
-            <LogItem item={{ ty: 'open', ts: new Date() }} />
-            <LogItem item={{ ty: 'close', ts: new Date() }} />
-            <LogItem
-                item={{ ty: 'flow', flow: 1, leak: true, ts: new Date() }}
-            />
+        <div class="absolute bottom-4 left-0 right-0 mx-auto h-fit w-fit">
+            <Valve actions={VALVE_ACTIONS} />
         </div>
-    </div>
-    <div class="fixed bottom-0 flex h-12 w-full bg-slate-900">
-        <button
-            class="absolute bottom-0 right-4 top-0 my-auto h-5 w-5 text-white"
-        >
-            <FaSignOutAlt />
-        </button>
-    </div>
-    <div class="absolute bottom-4 left-0 right-0 mx-auto h-fit w-fit">
-        <Valve actions={VALVE_ACTIONS} />
-    </div>
-    <Background />
-</Layout>
+        <Background />
+    </Layout>
+{:catch err}
+    <p>err</p>
+{/await}
 
 <style>
     .wrapper {

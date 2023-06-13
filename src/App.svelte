@@ -6,18 +6,12 @@
 
     import { register } from './register.ts';
     import { session } from './stores/session.ts';
-    import { onMount } from 'svelte';
 
     const routes = {
         '/': Login,
         '/dash': Dashboard,
     };
 
-    $: console.log($session);
-
-    onMount(() => {
-        session.load().catch(console.error);
-    });
 </script>
 
 <main>
