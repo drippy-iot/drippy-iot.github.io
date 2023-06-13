@@ -8,8 +8,8 @@ interface MetricEvent {
     flow?: number;
 }
 
-export const userMetricsFlow = writable<Flow[]>();
-export const userMetricsEvents = writable<MetricEvent[]>();
+export const userMetricsFlow = writable<Flow[]>([]);
+export const userMetricsEvents = writable<MetricEvent[]>([]);
 
 export const userMetricsListener: MetricsListener = {
     onFlows(flows) {
@@ -28,14 +28,14 @@ export const userMetricsListener: MetricsListener = {
                 } as MetricEvent;
             });
             userMetricsEvents.update(arr => {
-                arr.push(...eventFmt);
+                arr.unshift(...eventFmt);
                 return arr;
             });
         }
     },
     onOpen(ts) {
         userMetricsEvents.update(arr => {
-            arr.push({
+            arr.unshift({
                 ty: 'open',
                 ts,
             });
@@ -44,7 +44,7 @@ export const userMetricsListener: MetricsListener = {
     },
     onBypass(ts) {
         userMetricsEvents.update(arr => {
-            arr.push({
+            arr.unshift({
                 ty: 'bypass',
                 ts,
             });
@@ -53,7 +53,7 @@ export const userMetricsListener: MetricsListener = {
     },
     onClose(ts) {
         userMetricsEvents.update(arr => {
-            arr.push({
+            arr.unshift({
                 ty: 'close',
                 ts,
             });
