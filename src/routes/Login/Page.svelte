@@ -8,7 +8,9 @@
     import Drippy from '../../assets/drippy-animated.svelte';
     import Background from './Background.svelte';
     import { assert } from '../../assert.ts';
-    import { login } from '../../sdk/auth';
+    import { getSession, login } from '../../sdk/auth';
+    import { location, replace } from 'svelte-spa-router';
+    import { onMount } from 'svelte';
     let user = true;
 
     async function handleSubmit(this: HTMLFormElement) {
@@ -23,8 +25,13 @@
         console.log(status);
         if (!status) return alert('MAC has not yet been registered.');
 
-        alert('Logged In');
+        replace('/dash');
     }
+
+    onMount(async () => {
+        const session = await getSession();
+        if (session != null) replace('/dash');
+    });
 </script>
 
 <Layout>
