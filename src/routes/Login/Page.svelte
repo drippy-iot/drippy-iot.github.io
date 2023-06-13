@@ -8,7 +8,7 @@
     import Drippy from '../../assets/drippy-animated.svelte';
     import Background from './Background.svelte';
     import { assert } from '../../assert.ts';
-    import { login } from '../../sdk/auth';
+    import { login } from '../../sdk/auth.ts';
     import { replace } from 'svelte-spa-router';
     import { session } from '../../stores/session.ts';
     let user = true;
