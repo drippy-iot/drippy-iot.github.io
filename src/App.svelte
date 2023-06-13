@@ -5,8 +5,7 @@
     import Login from './routes/Login/Page.svelte';
 
     import { register } from './register.ts';
-    import { session } from './stores/session.ts';
-
+    
     const routes = {
         '/': Login,
         '/dash': Dashboard,

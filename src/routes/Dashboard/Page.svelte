@@ -21,14 +21,10 @@
     let mac = 'ad:ad:ad:ad';
     // Redirect to Login on no session
 
-    const sessionReady = session.load()
+    const sessionReady = session.reload?.()
         .then((session) => {
             if (session === null) replace('/')
-        })
-        .catch(err => {
-            alert(err);
-            throw err;
-        })
+        });
 
     // Flatten objects to array of labels.
     let GRANULARITY_OPTIONS = GRAN_OPTS.map(option => option.label);
