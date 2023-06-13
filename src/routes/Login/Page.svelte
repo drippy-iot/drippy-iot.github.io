@@ -13,10 +13,6 @@
     import { session } from '../../stores/session.ts';
     let user = true;
 
-    session.subscribe(sesh => {
-        if (sesh !== null) replace('/dash');
-    });
-
     async function handleSubmit(this: HTMLFormElement) {
         const formData = new FormData(this);
         const mac = formData.get('mac');
@@ -26,9 +22,15 @@
         const { buffer } = new Uint8Array(parsed);
 
         const status = await login(buffer);
-        if (!status) return alert('MAC has not yet been registered.');
 
-        await session.reload?.();
+        try {
+            if (status) {
+                await session.reload?.();
+                replace('/dash');
+            } else return alert('MAC has not yet been registered.');
+        } catch (err){
+            alert(err)
+        }
     }
 </script>
 
