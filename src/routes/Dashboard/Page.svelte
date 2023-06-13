@@ -1,6 +1,16 @@
 <script lang="ts">
     import COLORS from 'tailwindcss/colors';
     import FaSignOutAlt from 'svelte-icons/fa/FaSignOutAlt.svelte';
+    import { assert } from '../../assert';
+    import { session } from '../../stores/session';
+    import { replace } from 'svelte-spa-router';
+    import { getUserMetrics } from '../../sdk/metrics';
+    import {
+        userMetricsListener,
+        userMetricsEvents,
+        userMetricsFlow,
+    } from '../../stores/usermetrics';
+    import { startOfDay } from 'date-fns';
 
     import Layout from '../../components/Layout.svelte';
     import LogItem from '../../components/LogItem.svelte';
@@ -14,14 +24,8 @@
     import DropletCross from '../../assets/droplet-cross.svelte';
     import { GRAN_OPTS } from './constants';
     import { Granularity } from '../../components/Chart/types';
-    import { assert } from '../../assert';
-    import { session } from '../../stores/session';
-    import { replace } from 'svelte-spa-router';
-    import { getUserMetrics } from '../../sdk/metrics';
-    import { userMetricsListener } from '../../stores/usermetrics';
-    import { startOfDay } from 'date-fns';
+    import { requestReset, requestShutdown } from '../../sdk/request';
 
-    let mac = 'ad:ad:ad:ad';
     // Redirect to Login on no session
 
     const sessionReady = session.reload?.().then(session => {
@@ -47,14 +51,16 @@
     let VALVE_ACTIONS = [
         {
             icon: Droplet,
-            action: () => {
+            action: async () => {
                 console.log('Droplet');
+                await requestReset();
             },
         },
         {
             icon: DropletCross,
-            action: () => {
+            action: async () => {
                 console.log('DropletCross');
+                await requestShutdown();
             },
         },
     ];
@@ -78,7 +84,10 @@
                 <h1>Some-Dood</h1>
             </div>
             <div class="relative -left-4 max-h-[30cqh] w-[100cqw]">
-                <Display granularity={granularity.value} />
+                <Display
+                    flowDataSource={$userMetricsFlow}
+                    granularity={granularity.value}
+                />
                 <span class="absolute bottom-full right-4">
                     <Select
                         name="granularity"
@@ -87,20 +96,21 @@
                     />
                 </span>
             </div>
-            <div class="flex justify-between">
-                <Select name="mac" bind:value={mac} options={[]} disabled
-                    >Device Mac:
-                </Select>
-                <Text --text-bg={COLORS.green[500]}>Connected</Text>
-            </div>
+            {#if $session !== null}
+                <div class="flex justify-between">
+                    <div>
+                        Device Mac: {$session.mac}
+                    </div>
+                    <Text --text-bg={COLORS.green[500]}>Connected</Text>
+                </div>
+            {/if}
             <h2 class="block">System Log:</h2>
             <div class="flex flex-1 flex-col gap-2 overflow-y-auto">
-                <LogItem item={{ ty: 'bypass', ts: new Date() }} />
-                <LogItem item={{ ty: 'open', ts: new Date() }} />
-                <LogItem item={{ ty: 'close', ts: new Date() }} />
-                <LogItem
-                    item={{ ty: 'flow', flow: 1, leak: true, ts: new Date() }}
-                />
+                {#each $userMetricsEvents as metricEvent}
+                    <LogItem {...metricEvent} />
+                {:else}
+                    <p>No events logged yet.</p>
+                {/each}
             </div>
         </div>
         <div class="fixed bottom-0 flex h-12 w-full bg-slate-900">
