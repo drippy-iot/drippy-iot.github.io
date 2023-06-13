@@ -3,7 +3,7 @@
     import Chart from 'chart.js/auto';
     import ChartStreaming from 'chartjs-plugin-streaming';
     import ChartZoom from 'chartjs-plugin-zoom';
-    import { onDestroy, onMount } from 'svelte';
+    import { onMount } from 'svelte';
     import colors from 'tailwindcss/colors';
 
     import 'chartjs-adapter-date-fns';

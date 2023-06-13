@@ -1,5 +1,4 @@
 import COLORS from 'tailwindcss/colors';
-import type { Option } from '../../components/Select/types.ts';
 import { Granularity } from '../../components/Chart/types.ts';
 
 export enum LogType {
