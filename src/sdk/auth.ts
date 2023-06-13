@@ -1,7 +1,7 @@
 import { StatusCodes } from 'http-status-codes';
 
 import { assert } from '../assert.ts';
-import { BadInput, UnexpectedStatusCode } from './error.ts';
+import { BadInput, InvalidSession, UnexpectedStatusCode } from './error.ts';
 import { Command } from '../models/command.ts';
 
 export interface Session {
@@ -51,5 +51,23 @@ export async function login(mac: ArrayBuffer): Promise<boolean> {
             throw new BadInput();
         default:
             throw new UnexpectedStatusCode(status);
+    }
+}
+
+/**
+ * Logs out the current session. Returns the associated MAC address.
+ * If the session does not exist (for some reason?), we return `null`.
+ */
+export async function logout(): Promise<ArrayBuffer | null> {
+    const res = await fetch('/auth/session', { method: 'DELETE' });
+    switch (res.status) {
+        case StatusCodes.OK:
+            return res.arrayBuffer();
+        case StatusCodes.NOT_FOUND:
+            return null;
+        case StatusCodes.UNAUTHORIZED:
+            throw new InvalidSession();
+        default:
+            throw new UnexpectedStatusCode(res.status);
     }
 }
