@@ -1,4 +1,9 @@
 <script lang="ts">
+    import { assert } from '../../assert.ts';
+    import { login } from '../../sdk/auth.ts';
+    import { replace } from 'svelte-spa-router';
+    import { session } from '../../stores/session.ts';
+
     import FaUser from 'svelte-icons/fa/FaUser.svelte';
     import FaShieldAlt from 'svelte-icons/fa/FaShieldAlt.svelte';
 
@@ -7,10 +12,7 @@
     import TabGroup from '../../components/Tab/TabGroup.svelte';
     import Drippy from '../../assets/drippy-animated.svelte';
     import Background from './Background.svelte';
-    import { assert } from '../../assert.ts';
-    import { login } from '../../sdk/auth.ts';
-    import { replace } from 'svelte-spa-router';
-    import { session } from '../../stores/session.ts';
+
     let user = true;
 
     async function handleSubmit(this: HTMLFormElement) {
