@@ -1,5 +1,6 @@
 <script lang="ts">
     import type { ChartConfiguration } from 'chart.js';
+    import { Flow } from '../../models/user.ts';
     import Chart from 'chart.js/auto';
     import ChartStreaming from '@robloche/chartjs-plugin-streaming';
     import ChartZoom from 'chartjs-plugin-zoom';
@@ -7,11 +8,7 @@
     import colors from 'tailwindcss/colors';
 
     import 'chartjs-adapter-date-fns';
-
-    import { createMock } from './mock.ts';
     import { Granularity } from './types.ts';
-    import { assert } from '../../assert.ts';
-    import { newFlow } from '../../stores/flow.ts';
 
     Chart.register(ChartStreaming);
     Chart.register(ChartZoom);
@@ -19,7 +16,7 @@
     Chart.defaults.font.family = 'Poppins, Arial, sans-serif';
 
     let canvas: HTMLCanvasElement;
-
+    export let flowDataSource: Flow[];
     let chart: Chart;
 
     // Granularity is in the form of seconds. If left undefined,
@@ -106,11 +103,11 @@
     $: {
         // Update chart upon retrieving data and clear buffer.
         const chart = Chart.getChart(canvas);
-        const points = $newFlow.splice(0).map(({ end, flow }) => ({
+        const points = flowDataSource.splice(0).map(({ end, flow }) => ({
             x: end.getTime(),
             y: flow,
         }));
-        $newFlow = $newFlow;
+        flowDataSource = flowDataSource;
         chart?.data.datasets[0]?.data.push(...points);
         chart?.update('quiet');
     }
