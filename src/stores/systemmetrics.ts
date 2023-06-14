@@ -5,7 +5,7 @@ import { MetricsListener } from '../sdk/metrics';
 interface SystemMetricEvent {
     ty: 'flow';
     ts: Date;
-    flow?: number;
+    flow: number;
 }
 
 export const systemMetricsFlow = writable<Flow[]>([]);
@@ -25,7 +25,7 @@ export const systemMetricsListener: Pick<MetricsListener, 'onFlows'> = {
                     ty: 'flow',
                     ts: leak.end,
                     flow: leak.flow,
-                } as SystemMetricEvent;
+                } satisfies SystemMetricEvent;
             });
             systemMetricsEvents.update(arr => {
                 arr.unshift(...eventFmt);
