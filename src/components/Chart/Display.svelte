@@ -1,16 +1,13 @@
 <script lang="ts">
-    import type { ChartConfiguration } from 'chart.js';
-    import Chart from 'chart.js/auto';
     import ChartStreaming from '@robloche/chartjs-plugin-streaming';
     import ChartZoom from 'chartjs-plugin-zoom';
     import { onDestroy, onMount } from 'svelte';
+    import type { ChartConfiguration } from 'chart.js';
+    import Chart from 'chart.js/auto';
     import colors from 'tailwindcss/colors';
-
     import 'chartjs-adapter-date-fns';
-
-    import { flow, createMock } from './mock.ts';
-    import { Granularity } from './types.ts';
-    import { assert } from '../../assert.ts';
+    import { Flow } from '../../models/user.ts';
+    //import { Granularity } from './types.ts';
 
     Chart.register(ChartStreaming);
     Chart.register(ChartZoom);
@@ -18,12 +15,12 @@
     Chart.defaults.font.family = 'Poppins, Arial, sans-serif';
 
     let canvas: HTMLCanvasElement;
-
+    export let flowDataSource: Flow[];
     let chart: Chart;
 
     // Granularity is in the form of seconds. If left undefined,
     // backend uses the predetermined quantum as the selected granularity
-    export let granularity: Granularity = Granularity.REALTIME;
+    //export let granularity: Granularity = Granularity.REALTIME;
 
     // Chart Configuration Data
     const data: ChartConfiguration['data'] = {
@@ -105,11 +102,11 @@
     $: {
         // Update chart upon retrieving data and clear buffer.
         const chart = Chart.getChart(canvas);
-        const points = $flow.splice(0).map(({ ts, flow }) => ({
-            x: ts.getTime(),
+        const points = flowDataSource.splice(0).map(({ end, flow }) => ({
+            x: end.getTime(),
             y: flow,
         }));
-        $flow = $flow; // notify mutation
+        flowDataSource = flowDataSource;
         chart?.data.datasets[0]?.data.push(...points);
         chart?.update('quiet');
     }
@@ -125,17 +122,6 @@
         clearInterval(interval);
     });
     let interval: number;
-
-    $: {
-        clearInterval(interval);
-        if (chart) {
-            const [first, ...rest] = chart.data.datasets;
-            assert(typeof first !== 'undefined');
-            first.data = [];
-        }
-        chart?.update('none');
-        interval = createMock(granularity);
-    }
 </script>
 
 <canvas bind:this={canvas} />

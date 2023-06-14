@@ -16,8 +16,12 @@ export interface Session {
  */
 export async function getSession(): Promise<Session | null> {
     const res = await fetch('/auth/session', { credentials: 'include' });
+
+    if (res.status === StatusCodes.UNAUTHORIZED) return null;
+
     const mac = await res.arrayBuffer();
     assert(mac.byteLength === 6);
+
     switch (res.status) {
         case StatusCodes.OK:
             return { mac, request: Command.None };
