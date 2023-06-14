@@ -16,7 +16,6 @@
     let user = true;
 
     async function handleSubmit(this: HTMLFormElement) {
-
         if (user) {
             const formData = new FormData(this);
             const mac = formData.get('mac');

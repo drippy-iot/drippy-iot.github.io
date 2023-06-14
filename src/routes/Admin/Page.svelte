@@ -66,9 +66,7 @@
             </span>
         </div>
         <div class="flex justify-between">
-            <div>
-                System Wide View
-            </div>
+            <div>System Wide View</div>
             <Text --text-bg={COLORS.green[500]}>Connected</Text>
         </div>
         <h2 class="block">System Log:</h2>
