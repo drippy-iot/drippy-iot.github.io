@@ -89,10 +89,7 @@
                 <h1>Some-Dood</h1>
             </div>
             <div class="relative -left-4 max-h-[30cqh] w-[100cqw]">
-                <Display
-                    flowDataSource={$userMetricsFlow}
-                    granularity={granularity.value}
-                />
+                <Display flowDataSource={$userMetricsFlow} />
                 <span class="absolute bottom-full right-4">
                     <Select
                         name="granularity"
