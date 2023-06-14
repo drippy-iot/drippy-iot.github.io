@@ -22,6 +22,7 @@ export async function requestReset(): Promise<State> {
     const { status } = await fetch(BASE + '/api/reset', {
         method: 'POST',
         credentials: 'include',
+        mode: 'cors',
     });
     switch (status) {
         case StatusCodes.CREATED:
@@ -50,6 +51,7 @@ export async function requestShutdown(): Promise<State> {
     const { status } = await fetch(BASE + '/api/shutdown', {
         method: 'POST',
         credentials: 'include',
+        mode: 'cors',
     });
     switch (status) {
         case StatusCodes.CREATED:

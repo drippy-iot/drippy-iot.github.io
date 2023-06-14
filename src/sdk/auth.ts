@@ -18,7 +18,10 @@ export interface Session {
  * as well as its current shutdown flag state.
  */
 export async function getSession(): Promise<Session | null> {
-    const res = await fetch(SESSION_URL, { credentials: 'include' });
+    const res = await fetch(SESSION_URL, {
+        credentials: 'include',
+        mode: 'cors',
+    });
 
     if (res.status === StatusCodes.UNAUTHORIZED) return null;
 
@@ -48,6 +51,7 @@ export async function login(mac: ArrayBuffer): Promise<boolean> {
     const { status } = await fetch(SESSION_URL, {
         method: 'POST',
         body: mac,
+        mode: 'cors',
     });
     switch (status) {
         case StatusCodes.CREATED:
@@ -69,6 +73,7 @@ export async function logout(): Promise<ArrayBuffer | null> {
     const res = await fetch(SESSION_URL, {
         method: 'DELETE',
         credentials: 'include',
+        mode: 'cors',
     });
     switch (res.status) {
         case StatusCodes.OK:
