@@ -1,4 +1,5 @@
 import { assert } from '../assert.ts';
+import { BASE } from './base.ts';
 import {
     type Bypass,
     type Close,
@@ -25,7 +26,7 @@ export async function getUserMetrics(
     const params = new URLSearchParams({ since: since.valueOf().toString() });
     if (typeof secs !== 'undefined') params.set('secs', secs.toString());
 
-    const src = new EventSource(`/api/metrics/user?${params}`, {
+    const src = new EventSource(`${BASE}/api/metrics/user?${params}`, {
         withCredentials: true,
     });
 
@@ -85,7 +86,7 @@ export async function getSystemMetrics(
     const params = new URLSearchParams({ since: since.valueOf().toString() });
     if (typeof secs !== 'undefined') params.set('secs', secs.toString());
 
-    const src = new EventSource(`/api/metrics/system?${params}`, {
+    const src = new EventSource(`${BASE}/api/metrics/system?${params}`, {
         withCredentials: true,
     });
 

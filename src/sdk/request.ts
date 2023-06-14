@@ -1,5 +1,6 @@
 import { StatusCodes } from 'http-status-codes';
 
+import { BASE } from './base.ts';
 import { InvalidSession, UnexpectedStatusCode } from './error.ts';
 
 /** The previous state of the database. */
@@ -18,7 +19,7 @@ export const enum State {
  * bypass a locked unit (i.e., "closed valve").
  */
 export async function requestReset(): Promise<State> {
-    const { status } = await fetch('/api/reset', {
+    const { status } = await fetch(BASE + '/api/reset', {
         method: 'POST',
         credentials: 'include',
     });
@@ -46,7 +47,7 @@ export async function requestReset(): Promise<State> {
  * the server for its remote shutdown.
  */
 export async function requestShutdown(): Promise<State> {
-    const { status } = await fetch('/api/shutdown', {
+    const { status } = await fetch(BASE + '/api/shutdown', {
         method: 'POST',
         credentials: 'include',
     });

@@ -1,8 +1,11 @@
 import { StatusCodes } from 'http-status-codes';
 
 import { assert } from '../assert.ts';
+import { BASE } from './base.ts';
 import { BadInput, InvalidSession, UnexpectedStatusCode } from './error.ts';
 import { Command } from '../models/command.ts';
+
+const SESSION_URL = BASE + '/auth/session';
 
 export interface Session {
     mac: ArrayBuffer;
@@ -15,7 +18,7 @@ export interface Session {
  * as well as its current shutdown flag state.
  */
 export async function getSession(): Promise<Session | null> {
-    const res = await fetch('/auth/session', { credentials: 'include' });
+    const res = await fetch(SESSION_URL, { credentials: 'include' });
 
     if (res.status === StatusCodes.UNAUTHORIZED) return null;
 
@@ -42,7 +45,7 @@ export async function getSession(): Promise<Session | null> {
  * returns `true` and saves the session ID into an HTTP-only cookie.
  */
 export async function login(mac: ArrayBuffer): Promise<boolean> {
-    const { status } = await fetch('/auth/session', {
+    const { status } = await fetch(SESSION_URL, {
         method: 'POST',
         body: mac,
     });
@@ -63,7 +66,7 @@ export async function login(mac: ArrayBuffer): Promise<boolean> {
  * If the session does not exist (for some reason?), we return `null`.
  */
 export async function logout(): Promise<ArrayBuffer | null> {
-    const res = await fetch('/auth/session', {
+    const res = await fetch(SESSION_URL, {
         method: 'DELETE',
         credentials: 'include',
     });
