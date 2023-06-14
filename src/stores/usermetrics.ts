@@ -25,7 +25,7 @@ export const userMetricsListener: MetricsListener = {
                     ty: 'flow',
                     ts: leak.end,
                     flow: leak.flow,
-                } as MetricEvent;
+                } satisfies MetricEvent;
             });
             userMetricsEvents.update(arr => {
                 arr.unshift(...eventFmt);

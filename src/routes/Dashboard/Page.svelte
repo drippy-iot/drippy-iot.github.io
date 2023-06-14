@@ -16,7 +16,7 @@
     import LogItem from '../../components/LogItem.svelte';
     import Select from '../../components/Select/Select.svelte';
     import Text from '../../components/Text.svelte';
-    import Background from './Background.svelte';
+    import Background from '../WavesBackground.svelte';
     import Valve from '../../components/Valve/Main.svelte';
 
     import Display from '../../components/Chart/Display.svelte';
