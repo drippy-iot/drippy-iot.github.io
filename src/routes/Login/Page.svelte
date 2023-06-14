@@ -50,13 +50,15 @@
             <h1>Drippy</h1>
         </div>
         <form on:submit|self|preventDefault|stopPropagation={handleSubmit}>
-            <input
-                type="text"
-                name="mac"
-                placeholder="aa:bb:cc:dd:ee:ff"
-                required
-                pattern={`[a-fA-F0-9]{2}:[a-fA-F0-9]{2}:[a-fA-F0-9]{2}:[a-fA-F0-9]{2}:[a-fA-F0-9]{2}:[a-fA-F0-9]{2}`}
-            />
+            {#if user}
+                <input
+                    type="text"
+                    name="mac"
+                    placeholder="aa:bb:cc:dd:ee:ff"
+                    required
+                    pattern={`[a-fA-F0-9]{2}:[a-fA-F0-9]{2}:[a-fA-F0-9]{2}:[a-fA-F0-9]{2}:[a-fA-F0-9]{2}:[a-fA-F0-9]{2}`}
+                />
+            {/if}
             <input type="submit" class:user value="Login" />
         </form>
     </main>
