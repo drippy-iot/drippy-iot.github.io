@@ -56,16 +56,16 @@
     let VALVE_ACTIONS = [
         {
             icon: Droplet,
-            action: async () => {
+            action() {
                 console.log('Droplet');
-                await requestReset();
+                return requestReset();
             },
         },
         {
             icon: DropletCross,
-            action: async () => {
+            action() {
                 console.log('DropletCross');
-                await requestShutdown();
+                return requestShutdown();
             },
         },
     ];
