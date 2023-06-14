@@ -16,22 +16,27 @@
     let user = true;
 
     async function handleSubmit(this: HTMLFormElement) {
-        const formData = new FormData(this);
-        const mac = formData.get('mac');
-        assert(mac !== null && typeof mac === 'string');
-        const split = mac.split(':');
-        const parsed = split.map(hexstr => parseInt(hexstr, 16));
-        const { buffer } = new Uint8Array(parsed);
 
-        const status = await login(buffer);
+        if (user) {
+            const formData = new FormData(this);
+            const mac = formData.get('mac');
+            assert(mac !== null && typeof mac === 'string');
+            const split = mac.split(':');
+            const parsed = split.map(hexstr => parseInt(hexstr, 16));
+            const { buffer } = new Uint8Array(parsed);
 
-        try {
-            if (status) {
-                await session.load();
-                replace('/dash');
-            } else return alert('MAC has not yet been registered.');
-        } catch (err) {
-            alert(err);
+            const status = await login(buffer);
+
+            try {
+                if (status) {
+                    await session.load();
+                    replace('/dash');
+                } else return alert('MAC has not yet been registered.');
+            } catch (err) {
+                alert(err);
+            }
+        } else {
+            replace('/admin');
         }
     }
 
