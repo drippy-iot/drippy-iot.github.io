@@ -24,7 +24,7 @@
     // Flatten objects to array of labels.
     let GRANULARITY_OPTIONS = GRAN_OPTS.map(option => option.label);
 
-    let close:(() => void) | undefined;
+    let close: (() => void) | undefined;
     function getGranularity(
         granularity: Granularity,
         key: 'label' | 'value' = 'value'
@@ -45,10 +45,12 @@
         granularity?.value === Granularity.REALTIME
             ? undefined
             : granularity?.value
-    ).then(val => {
-        if (typeof close !== 'undefined') close();
-        close = val;
-        }).catch(console.error)
+    )
+        .then(val => {
+            if (typeof close !== 'undefined') close();
+            close = val;
+        })
+        .catch(console.error);
 </script>
 
 <Layout>

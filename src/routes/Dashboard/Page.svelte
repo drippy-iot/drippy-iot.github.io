@@ -48,7 +48,7 @@
         replace('/');
     }
     let value = 'Realtime';
-    let close:(() => void) | undefined;
+    let close: (() => void) | undefined;
 
     $: granularity = getGranularity(value, 'label');
 
@@ -75,10 +75,12 @@
         granularity?.value === Granularity.REALTIME
             ? undefined
             : granularity?.value
-    ).then(val => {
-        if (typeof close !== 'undefined') close();
-        close = val;
-        }).catch(console.error);
+    )
+        .then(val => {
+            if (typeof close !== 'undefined') close();
+            close = val;
+        })
+        .catch(console.error);
 </script>
 
 {#await sessionReady}
@@ -104,9 +106,7 @@
             </div>
             {#if $session !== null}
                 <div class="flex justify-between">
-                    <div>
-                        Individual MAC
-                    </div>
+                    <div>Individual MAC</div>
                     <Text --text-bg={COLORS.green[500]}>Connected</Text>
                 </div>
             {/if}
