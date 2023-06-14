@@ -42,7 +42,6 @@
     }
 
     async function handleLogout() {
-        await logout();
         replace('/');
     }
     let value = 'Realtime';
