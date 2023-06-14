@@ -40,9 +40,7 @@
         granularity: Granularity,
         key: 'label' | 'value' = 'value'
     ) {
-        const match = GRAN_OPTS.filter(opt => opt[key] == granularity);
-        assert(match.length == 1);
-        return match[0];
+        return GRAN_OPTS.find(opt => opt[key] == granularity);
     }
 
     async function handleLogout() {
@@ -50,6 +48,7 @@
         replace('/');
     }
     let value = 'Realtime';
+    let close:(() => void) | undefined;
 
     $: granularity = getGranularity(value, 'label');
 
@@ -76,7 +75,10 @@
         granularity?.value === Granularity.REALTIME
             ? undefined
             : granularity?.value
-    ).catch(console.error);
+    ).then(val => {
+        if (typeof close !== 'undefined') close();
+        close = val;
+        }).catch(console.error);
 </script>
 
 {#await sessionReady}
@@ -86,10 +88,12 @@
         <div class="wrapper flex flex-col gap-4 p-4 text-xs">
             <div>
                 <h2>Welcome</h2>
-                <h1>Some-Dood</h1>
+                <h1>User</h1>
             </div>
             <div class="relative -left-4 max-h-[30cqh] w-[100cqw]">
-                <Display flowDataSource={$userMetricsFlow} />
+                {#key granularity}
+                    <Display flowDataSource={$userMetricsFlow} />
+                {/key}
                 <span class="absolute bottom-full right-4">
                     <Select
                         name="granularity"
@@ -101,7 +105,7 @@
             {#if $session !== null}
                 <div class="flex justify-between">
                     <div>
-                        Device Mac: {$session.mac}
+                        Individual MAC
                     </div>
                     <Text --text-bg={COLORS.green[500]}>Connected</Text>
                 </div>

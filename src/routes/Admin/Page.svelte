@@ -24,13 +24,12 @@
     // Flatten objects to array of labels.
     let GRANULARITY_OPTIONS = GRAN_OPTS.map(option => option.label);
 
+    let close:(() => void) | undefined;
     function getGranularity(
         granularity: Granularity,
         key: 'label' | 'value' = 'value'
     ) {
-        const match = GRAN_OPTS.filter(opt => opt[key] == granularity);
-        assert(match.length == 1);
-        return match[0];
+        return GRAN_OPTS.find(opt => opt[key] == granularity);
     }
 
     async function handleLogout() {
@@ -46,7 +45,10 @@
         granularity?.value === Granularity.REALTIME
             ? undefined
             : granularity?.value
-    ).catch(console.error);
+    ).then(val => {
+        if (typeof close !== 'undefined') close();
+        close = val;
+        }).catch(console.error)
 </script>
 
 <Layout>
@@ -56,7 +58,9 @@
             <h1>Administrator</h1>
         </div>
         <div class="relative -left-4 max-h-[30cqh] w-[100cqw]">
-            <Display flowDataSource={$systemMetricsFlow} />
+            {#key granularity}
+                <Display flowDataSource={$systemMetricsFlow} />
+            {/key}
             <span class="absolute bottom-full right-4">
                 <Select
                     name="granularity"
