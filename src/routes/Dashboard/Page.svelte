@@ -24,8 +24,8 @@
     import DropletCross from '../../assets/droplet-cross.svelte';
     import { GRAN_OPTS } from './constants';
     import { Granularity } from '../../components/Chart/types';
-    import { requestReset, requestShutdown } from '../../sdk/request';
-    import { logout } from '../../sdk/auth';
+    import { requestReset, requestShutdown } from '../../sdk/request.ts';
+    import { logout } from '../../sdk/auth.ts';
 
     // Redirect to Login on no session
 
