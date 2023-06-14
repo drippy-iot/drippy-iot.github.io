@@ -1,5 +1,5 @@
 <script>
-    import Waves from '../../components/Waves.svelte';
+    import Waves from '../components/Waves.svelte';
 
     const PATHS = [
         'M0,64L120,85.3C240,107,480,149,720,176C960,203,1200,213,1320,218.7L1440,224L1440,320L1320,320C1200,320,960,320,720,320C480,320,240,320,120,320L0,320Z',

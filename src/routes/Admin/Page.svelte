@@ -2,7 +2,6 @@
     import COLORS from 'tailwindcss/colors';
     import FaSignOutAlt from 'svelte-icons/fa/FaSignOutAlt.svelte';
     import { assert } from '../../assert';
-    import { session } from '../../stores/session';
     import { replace } from 'svelte-spa-router';
     import { getSystemMetrics } from '../../sdk/metrics';
     import {
@@ -16,7 +15,7 @@
     import LogItem from '../../components/LogItem.svelte';
     import Select from '../../components/Select/Select.svelte';
     import Text from '../../components/Text.svelte';
-    import Background from './Background.svelte';
+    import Background from '../WavesBackground.svelte';
 
     import Display from '../../components/Chart/Display.svelte';
     import { GRAN_OPTS } from './constants';
