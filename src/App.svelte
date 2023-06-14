@@ -3,12 +3,14 @@
 
     import Dashboard from './routes/Dashboard/Page.svelte';
     import Login from './routes/Login/Page.svelte';
+    import Admin from './routes/Admin/Page.svelte';
 
     import { register } from './register.ts';
 
     const routes = {
         '/': Login,
         '/dash': Dashboard,
+        '/admin': Admin,
     };
 </script>
 
