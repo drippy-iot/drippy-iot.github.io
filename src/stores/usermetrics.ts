@@ -1,5 +1,5 @@
 import { writable } from '@square/svelte-store';
-import { Bypass, Close, Flow, Open } from '../models/user';
+import { Flow } from '../models/user';
 import { MetricsListener } from '../sdk/metrics';
 
 interface MetricEvent {
