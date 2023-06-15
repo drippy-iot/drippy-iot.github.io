@@ -5,7 +5,7 @@
     "packageManager": "pnpm@8",
     "source": "src/index.html",
     "scripts": {
-        "build": "parcel build",
+        "build": "parcel build --no-scope-hoist",
         "dev": "parcel --no-hmr",
         "watch": "parcel watch --no-hmr",
         "lint": "eslint src",
