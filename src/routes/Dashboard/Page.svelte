@@ -26,6 +26,7 @@
     import { Granularity } from '../../components/Chart/types.ts';
     import { logout } from '../../sdk/auth.ts';
     import { requestReset, requestShutdown } from '../../sdk/request.ts';
+    import { onDestroy } from 'svelte';
 
     // Redirect to Login on no session
 
@@ -81,6 +82,8 @@
             close = val;
         })
         .catch(console.error);
+
+    onDestroy(() => close?.());
 </script>
 
 {#await sessionReady}
