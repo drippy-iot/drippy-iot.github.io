@@ -26,7 +26,13 @@ async function activateWorker() {
 async function interceptFetch(req: Request) {
     const cache = await caches.open(version);
     const res = await cache.match(req);
-    return res ?? fetch(req);
+    if (res instanceof Response) return res;
+
+    const { pathname } = new URL(req.url);
+    const options: RequestInit = pathname.startsWith('/api') || pathname.startsWith('/auth')
+        ? { credentials: 'include', mode: 'cors' }
+        : { };
+    return fetch(req, options);
 }
 
 self.addEventListener(
