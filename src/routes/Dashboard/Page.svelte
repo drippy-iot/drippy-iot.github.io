@@ -1,7 +1,6 @@
 <script lang="ts">
     import COLORS from 'tailwindcss/colors';
     import FaSignOutAlt from 'svelte-icons/fa/FaSignOutAlt.svelte';
-    import { assert } from '../../assert';
     import { session } from '../../stores/session';
     import { replace } from 'svelte-spa-router';
     import { getUserMetrics } from '../../sdk/metrics';
@@ -22,10 +21,11 @@
     import Display from '../../components/Chart/Display.svelte';
     import Droplet from '../../assets/droplet.svelte';
     import DropletCross from '../../assets/droplet-cross.svelte';
-    import { GRAN_OPTS } from './constants';
-    import { Granularity } from '../../components/Chart/types';
-    import { requestReset, requestShutdown } from '../../sdk/request.ts';
+
+    import { GRAN_OPTS } from './constants.ts';
+    import { Granularity } from '../../components/Chart/types.ts';
     import { logout } from '../../sdk/auth.ts';
+    import { requestReset, requestShutdown } from '../../sdk/request.ts';
 
     // Redirect to Login on no session
 

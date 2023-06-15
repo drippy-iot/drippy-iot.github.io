@@ -25,10 +25,9 @@
             const { buffer } = new Uint8Array(parsed);
 
             const status = await login(buffer);
-
             try {
                 if (status) {
-                    await session.load();
+                    console.log(await session.load());
                     replace('/dash');
                 } else return alert('MAC has not yet been registered.');
             } catch (err) {

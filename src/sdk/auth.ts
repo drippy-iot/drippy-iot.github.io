@@ -50,8 +50,8 @@ export async function getSession(): Promise<Session | null> {
 export async function login(mac: ArrayBuffer): Promise<boolean> {
     const { status } = await fetch(SESSION_URL, {
         method: 'POST',
-        body: mac,
         mode: 'cors',
+        body: mac,
     });
     switch (status) {
         case StatusCodes.CREATED:

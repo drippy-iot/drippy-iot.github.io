@@ -1,26 +1,30 @@
 <script lang="ts">
+    import type { ChartConfiguration } from 'chart.js';
+    import 'chartjs-adapter-date-fns';
+
     import ChartStreaming from '@robloche/chartjs-plugin-streaming';
     import ChartZoom from 'chartjs-plugin-zoom';
-    import { onDestroy, onMount } from 'svelte';
-    import type { ChartConfiguration } from 'chart.js';
     import Chart from 'chart.js/auto';
+
+    import { onDestroy, onMount } from 'svelte';
     import colors from 'tailwindcss/colors';
-    import 'chartjs-adapter-date-fns';
+    // import { Granularity } from './types.ts';
+
     import { Flow } from '../../models/user.ts';
-    //import { Granularity } from './types.ts';
 
     Chart.register(ChartStreaming);
     Chart.register(ChartZoom);
     Chart.defaults.color = colors.slate[500];
     Chart.defaults.font.family = 'Poppins, Arial, sans-serif';
 
-    let canvas: HTMLCanvasElement;
     export let flowDataSource: Flow[];
+
+    let canvas: HTMLCanvasElement;
     let chart: Chart;
 
     // Granularity is in the form of seconds. If left undefined,
     // backend uses the predetermined quantum as the selected granularity
-    //export let granularity: Granularity = Granularity.REALTIME;
+    // export let granularity: Granularity = Granularity.REALTIME;
 
     // Chart Configuration Data
     const data: ChartConfiguration['data'] = {
