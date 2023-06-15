@@ -29,9 +29,10 @@ async function interceptFetch(req: Request) {
     if (res instanceof Response) return res;
 
     const { pathname } = new URL(req.url);
-    const options: RequestInit = pathname.startsWith('/api') || pathname.startsWith('/auth')
-        ? { credentials: 'include', mode: 'cors' }
-        : { };
+    const options: RequestInit =
+        pathname.startsWith('/api') || pathname.startsWith('/auth')
+            ? { credentials: 'include', mode: 'cors' }
+            : {};
     return fetch(req, options);
 }
 
